@@ -1,0 +1,25 @@
+{
+  "name": "deskree-js",
+  "version": "1.0.0",
+  "description": "Deskree's JavaScript SDK",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deskree-inc/deskree-js.git"
+  },
+  "keywords": [
+    "deskree",
+    "js",
+    "javascript",
+    "sdk"
+  ],
+  "author": "Deskree Technologies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deskree-inc/deskree-js/issues"
+  },
+  "homepage": "https://github.com/deskree-inc/deskree-js#readme"
+}
