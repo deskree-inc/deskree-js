@@ -1,4 +1,5 @@
 import { AxiosInstance } from "axios"
+import { SelectParamsDataType } from "./types"
 
 export class RestQueryBuilder {
 
@@ -13,15 +14,12 @@ export class RestQueryBuilder {
   }
 
   select(params?: SelectParamsDataType) {
+
+    if (params && params.where) {
+      params.where = JSON.stringify(params.where);
+    }
+
     return this.client.get(this.table, { params })
   }
 
-}
-
-type SelectParamsDataType = {
-  where?: string
-  'sorted[param]'?: string
-  'sorted[how]'?: string
-  page?: number
-  limit?: number
 }

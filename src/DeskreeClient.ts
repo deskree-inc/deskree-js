@@ -3,7 +3,7 @@ import { RestClient } from "./rest/RestClient"
 export class DeskreeClient {
 
   protected url: string
-  rest: RestClient
+  public rest: RestClient
 
   constructor(projectId: string) {
     if (!projectId) throw new Error('projectId is required.')

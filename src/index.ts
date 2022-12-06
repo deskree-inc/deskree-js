@@ -5,7 +5,7 @@ export const createClient = (projectId: string) => {
 }
 
 const client = createClient('deskree-sdk')
-const users = client.rest.from('users').select()
+const users = client.rest.from('products').select()
 
 users
   .then(({ data }) => console.log('SUCCESS: ', data))
