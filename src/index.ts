@@ -4,7 +4,9 @@ export const createClient = (projectId: string) => {
   return new DeskreeClient(projectId)
 }
 
-const deskreeClient = createClient('feedback-tool')
-const feedbacks = deskreeClient.from('feedbacks').select()
+const client = createClient('deskree-sdk')
+const users = client.rest.from('users').select()
 
-feedbacks.then(({ data }) => console.log(data)).catch(e => console.log(e))
+users
+  .then(({ data }) => console.log('SUCCESS: ', data))
+  .catch(e => console.log('FAILED: ', e.response.data))

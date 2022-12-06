@@ -12,8 +12,16 @@ export class RestQueryBuilder {
     this.client = client
   }
 
-  select() {
-    return this.client.get(this.table)
+  select(params?: SelectParamsDataType) {
+    return this.client.get(this.table, { params })
   }
 
+}
+
+type SelectParamsDataType = {
+  where?: string
+  'sorted[param]'?: string
+  'sorted[how]'?: string
+  page?: number
+  limit?: number
 }

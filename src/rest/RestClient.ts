@@ -14,7 +14,7 @@ export class RestClient {
   constructor(url: string) {
     this.url = url
     this.client = axios.create({
-      baseURL: url,
+      baseURL: `${url}/rest/collections`,
       headers: { 'Content-Type': 'application/json' },
       httpsAgent
     })
