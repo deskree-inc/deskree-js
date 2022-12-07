@@ -1,14 +1,12 @@
-import { AxiosInstance } from "axios"
+import { HttpHandlerInterface } from "../HttpHandler"
 import { SelectParamsDataType } from "./types"
 
 export class RestQueryBuilder {
 
-  protected url: string
   protected table: string
-  protected client: AxiosInstance
+  protected client: HttpHandlerInterface
 
-  constructor(url: string, table: string, client: AxiosInstance) {
-    this.url = url
+  constructor(table: string, client: HttpHandlerInterface) {
     this.table = table
     this.client = client
   }

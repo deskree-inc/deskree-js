@@ -1,18 +1,19 @@
 import { DeskreeClient } from '../DeskreeClient';
+import { RestMockHandler } from '../mocks/RestMockHandler';
+import { RestResponse } from '../mocks/RestResponse';
 
 describe('Testing REST Module', () => {
-  let client: DeskreeClient;
-
-  beforeEach(() => {
-    client = new DeskreeClient('deskree-sdk')
-  })
+  let response: RestResponse = new RestResponse();
+  let mock_active = process.env.MOCK_ACTIVE !== undefined && process.env.MOCK_ACTIVE === "false" ? false : true;
 
   test('GENERAL SUCCESS - Check for table with no entries', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getEmpty()))
     const { data } = await client.rest.from('users').select()
     expect(data).toEqual({ meta: { total: 0 }, data: [] })
   })
 
   test('GENERAL FAIL - Check for inexistent table', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getError()));
     expect.assertions(1);
     try {
       await client.rest.from('table-does-not-exist').select()
@@ -28,6 +29,7 @@ describe('Testing REST Module', () => {
   })
 
   test('PAGE - Get first page of products', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getPage()))
     const { data } = await client.rest.from('products').select({ page: 1 })
     expect(data).toEqual({
       meta: {
@@ -100,6 +102,7 @@ describe('Testing REST Module', () => {
   })
 
   test('LIMIT - Limit response list to 2 products', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getLimit()))
     const { data } = await client.rest.from('products').select({ limit: 2 })
     expect(data).toEqual({
       meta: {
@@ -132,6 +135,7 @@ describe('Testing REST Module', () => {
   })
 
   test('WHERE - Get a product where its name is Desk ', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getWhere()))
     const { data } = await client.rest.from('products').select({
       where: [
         {
@@ -161,6 +165,7 @@ describe('Testing REST Module', () => {
   })
 
   test('SORTED[PARAM] - Return products ascending by name', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingAsc()))
     const { data } = await client.rest.from('products').select({ 'sorted[param]': 'name' })
     expect(data).toEqual({
       meta: {
@@ -232,6 +237,7 @@ describe('Testing REST Module', () => {
   })
 
   test('SORTED[PARAM] + SORTED[HOW] - Return products descending by price', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingDesc()))
     const { data } = await client.rest.from('products').select({
       'sorted[how]': 'desc',
       'sorted[param]': 'price'

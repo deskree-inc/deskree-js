@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from "axios"
 import * as https from "https";
+import { HttpHandlerInterface } from "../HttpHandler";
 import { RestQueryBuilder } from "./RestQueryBuilder";
 
 const httpsAgent = new https.Agent({
@@ -8,20 +8,15 @@ const httpsAgent = new https.Agent({
 
 export class RestClient {
 
-  protected url: string
-  protected client: AxiosInstance
+  protected client: HttpHandlerInterface
 
-  constructor(url: string) {
-    this.url = url
-    this.client = axios.create({
-      baseURL: `${url}/rest/collections`,
-      headers: { 'Content-Type': 'application/json' },
-      httpsAgent
-    })
+  constructor(http: HttpHandlerInterface) {
+    this.client = http;
+    this.client.createInstance("/rest/collections");
   }
 
   from(table: string) {
-    return new RestQueryBuilder(this.url, table, this.client)
+    return new RestQueryBuilder(table, this.client)
   }
 
 }

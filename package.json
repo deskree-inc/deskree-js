@@ -4,7 +4,8 @@
   "description": "Deskree's JavaScript SDK",
   "main": "index.ts",
   "scripts": {
-    "test": "jest",
+    "test:cicd": "jest",
+    "test": "export MOCK_ACTIVE=false && jest",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "start:dev": "npx nodemon"
