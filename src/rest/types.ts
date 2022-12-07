@@ -2,7 +2,7 @@ export type SelectParamsDataType = {
   page?: number
   limit?: number
   where?: WhereDataType[] | string
-  'sorted[how]'?: string
+  'sorted[how]'?: 'asc' | 'desc'
   'sorted[param]'?: string
 }
 
