@@ -7,7 +7,10 @@ const httpsAgent = new https.Agent({
 
 export interface HttpHandlerInterface {
     get(path: string, options?: object): any;
-    createInstance(path: string, headers?: any) : void;
+    post(path: string, options?: object): any;
+    patch(path: string, options?: object): any;
+    delete(path: string, options?: object): any;
+    createInstance(path: string, headers?: any): void;
 }
 
 export class HttpHandler implements HttpHandlerInterface {
@@ -18,22 +21,35 @@ export class HttpHandler implements HttpHandlerInterface {
         this.url = url;
     }
 
-    createInstance(path: string, headers?: any) : void {
+    get(path: string, options?: object | undefined): any {
+        return this.client?.get(path, options);
+    }
+
+    post(path: string, options?: object | undefined): any {
+        return this.client?.post(path, options)
+    }
+
+    patch(path: string, options?: object | undefined): any {
+        return this.client?.patch(path, options)
+    }
+
+    delete(path: string, options?: object | undefined): any {
+        return this.client?.delete(path, options)
+    }
+
+    createInstance(path: string, headers?: any): void {
         let options = {
             baseURL: `${this.url}${path}`,
             headers: { 'Content-Type': 'application/json' },
             httpsAgent
         };
 
-        if(headers !== undefined) {
+        if (headers !== undefined) {
             options.headers = Object.assign(options.headers, headers);
         }
 
         this.client = axios.create(options);
     }
 
-    get(path: string, options?: object): any {
-        return this.client?.get(path, options);
-    }
 }
 

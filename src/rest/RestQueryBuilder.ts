@@ -1,7 +1,12 @@
 import { HttpHandlerInterface } from "../HttpHandler"
 import { SelectParamsDataType } from "./types"
 
-export class RestQueryBuilder {
+interface RestQueryBuilderDataType {
+  select(params?: SelectParamsDataType): any;
+  insert(body: object): any;
+}
+
+export class RestQueryBuilder implements RestQueryBuilderDataType {
 
   protected table: string
   protected client: HttpHandlerInterface
@@ -18,6 +23,10 @@ export class RestQueryBuilder {
     }
 
     return this.client.get(this.table, { params })
+  }
+
+  insert(body: object) {
+    return this.client.post(this.table, body)
   }
 
 }

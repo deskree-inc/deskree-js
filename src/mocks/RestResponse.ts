@@ -1,4 +1,5 @@
 export class RestResponse {
+
     getEmpty(): object {
         return { meta: { total: 0 }, data: [] };
     }
@@ -271,6 +272,21 @@ export class RestResponse {
                     }
                 }
             ]
+        };
+    }
+
+    insert(): object {
+        return {
+            meta: { total: 1 }, data: [{
+                uid: 'BPJcWcDwV4wzNaQxI7es',
+                attributes: {
+                    author: '',
+                    createdAt: '2022-12-06T15:33:38-03:00',
+                    updatedAt: '2022-12-06T15:33:38-03:00',
+                    name: 'New product',
+                    price: 9.9
+                }
+            }]
         };
     }
 }

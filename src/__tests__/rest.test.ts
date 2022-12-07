@@ -6,13 +6,13 @@ describe('Testing REST Module', () => {
   let response: RestResponse = new RestResponse();
   let mock_active = process.env.MOCK_ACTIVE !== undefined && process.env.MOCK_ACTIVE === "false" ? false : true;
 
-  test('GENERAL SUCCESS - Check for table with no entries', async () => {
+  test('SELECT: GENERAL SUCCESS - Check for table with no entries', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getEmpty()))
     const { data } = await client.rest.from('users').select()
     expect(data).toEqual({ meta: { total: 0 }, data: [] })
   })
 
-  test('GENERAL FAIL - Check for inexistent table', async () => {
+  test('SELECT: GENERAL FAIL - Check for inexistent table', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getError()));
     expect.assertions(1);
     try {
@@ -28,7 +28,7 @@ describe('Testing REST Module', () => {
     }
   })
 
-  test('PAGE - Get first page of products', async () => {
+  test('SELECT: PAGE - Get first page of products', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getPage()))
     const { data } = await client.rest.from('products').select({ page: 1 })
     expect(data).toEqual({
@@ -101,7 +101,7 @@ describe('Testing REST Module', () => {
     })
   })
 
-  test('LIMIT - Limit response list to 2 products', async () => {
+  test('SELECT: LIMIT - Limit response list to 2 products', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getLimit()))
     const { data } = await client.rest.from('products').select({ limit: 2 })
     expect(data).toEqual({
@@ -134,7 +134,7 @@ describe('Testing REST Module', () => {
     })
   })
 
-  test('WHERE - Get a product where its name is Desk ', async () => {
+  test('SELECT: WHERE - Get a product where its name is Desk ', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getWhere()))
     const { data } = await client.rest.from('products').select({
       where: [
@@ -164,7 +164,7 @@ describe('Testing REST Module', () => {
     })
   })
 
-  test('SORTED[PARAM] - Return products ascending by name', async () => {
+  test('SELECT: SORTED[PARAM] - Return products ascending by name', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingAsc()))
     const { data } = await client.rest.from('products').select({ 'sorted[param]': 'name' })
     expect(data).toEqual({
@@ -236,7 +236,7 @@ describe('Testing REST Module', () => {
     })
   })
 
-  test('SORTED[PARAM] + SORTED[HOW] - Return products descending by price', async () => {
+  test('SELECT: SORTED[PARAM] + SORTED[HOW] - Return products descending by price', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingDesc()))
     const { data } = await client.rest.from('products').select({
       'sorted[how]': 'desc',
@@ -311,4 +311,22 @@ describe('Testing REST Module', () => {
     })
   })
 
+  // test('INSERT: SUCCESS - Add product to products table', async () => {
+  //   let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.insert()))
+  //   const { data } = await client.rest.from('products').insert({ name: 'New product', price: 9.90 })
+  //   expect(data).toEqual({
+  //     meta: { total: 1 }, data: [{
+  //       uid: 'BPJcWcDwV4wzNaQxI7es',
+  //       attributes: {
+  //         author: '',
+  //         createdAt: '2022-12-06T15:33:38-03:00',
+  //         updatedAt: '2022-12-06T15:33:38-03:00',
+  //         name: 'New product',
+  //         price: 9.9
+  //       }
+  //     }]
+  //   })
+  // })
+
 })
+
