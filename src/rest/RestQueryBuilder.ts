@@ -1,8 +1,8 @@
 import { HttpHandlerInterface } from '../HttpHandler'
-import { SelectParamsDataType } from './types'
+import { GetParamsDataType } from './types'
 
 interface RestQueryBuilderDataType {
-  select(params?: SelectParamsDataType): any
+  get(params?: GetParamsDataType): any
   insert(body: object): any
   update(id: string, params: object): any
   delete(id: string): any
@@ -18,7 +18,7 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
     this.client = client
   }
 
-  select(params?: SelectParamsDataType) {
+  get(params?: GetParamsDataType) {
     if (params && params.where) {
       params.where = JSON.stringify(params.where)
     }

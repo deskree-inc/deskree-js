@@ -1,10 +1,5 @@
-import * as https from 'https'
 import { HttpHandlerInterface } from '../HttpHandler'
 import { RestQueryBuilder } from './RestQueryBuilder'
-
-const httpsAgent = new https.Agent({
-  rejectUnauthorized: false,
-})
 
 export class RestClient {
 

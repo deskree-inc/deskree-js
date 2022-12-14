@@ -1,4 +1,4 @@
-import { HttpHandlerInterface } from '../HttpHandler'
+import { HttpHandlerInterface } from '../../HttpHandler'
 
 export class RestMockHandler implements HttpHandlerInterface {
 
@@ -10,33 +10,23 @@ export class RestMockHandler implements HttpHandlerInterface {
 
     get(path: string, options?: object | undefined) {
         if (this.model.response !== undefined) throw this.model
-        return {
-            data: this.model
-        }
+        return { data: this.model }
     }
 
     post(path: string, options?: object | undefined) {
         if (this.model.response !== undefined) throw this.model
-        return {
-            data: this.model
-        }
+        return { data: this.model }
     }
 
     patch(path: string, options?: object | undefined) {
         if (this.model.response !== undefined) throw this.model
-        return {
-            data: this.model
-        }
+        return { data: this.model }
     }
 
     delete(path: string, options?: object | undefined) {
         if (this.model.response !== undefined) throw this.model
-        return {
-            data: this.model
-        }
+        return { data: this.model }
     }
 
-    createInstance(path: string, headers?: any): void {
-
-    }
+    createInstance(path: string, headers?: any): void { }
 }

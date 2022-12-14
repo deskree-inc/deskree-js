@@ -1,4 +1,4 @@
-export type SelectParamsDataType = {
+export type GetParamsDataType = {
   page?: number
   limit?: number
   where?: WhereDataType[] | string
