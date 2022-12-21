@@ -63,19 +63,19 @@ describe('Testing AUTH Module', () => {
     }
   })
 
-  // test('SUCCESS: Create URL for OAuth Sign In', async () => {
-  //   let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskreesdk') : new DeskreeClient('deskreesdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInSuccess()))
-  //   const { data } = await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
-  //   expect(data).toEqual({})
-  // })
+  test('SUCCESS: Create URL for OAuth Sign In', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskreesdk') : new DeskreeClient('deskreesdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInSuccess()))
+    const { data } = await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
+    expect(data).toEqual({})
+  })
 
-  // test('FAIL: Create URL for OAuth Sign In - Identity provider configuration not found', async () => {
-  //   let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInIdentityProviderConfigNotFound()))
-  //   try {
-  //     await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
-  //   } catch (e: any) {
-  //     expect(e.response.data.errors.errors[0].detail).toEqual('OPERATION_NOT_ALLOWED : The identity provider configuration is not found.')
-  //   }
-  // })
+  test('FAIL: Create URL for OAuth Sign In - Identity provider configuration not found', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInIdentityProviderConfigNotFound()))
+    try {
+      await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
+    } catch (e: any) {
+      expect(e.response.data.errors.errors[0].detail).toEqual('OPERATION_NOT_ALLOWED : The identity provider configuration is not found.')
+    }
+  })
 
 })
