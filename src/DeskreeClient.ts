@@ -7,7 +7,6 @@ export class DeskreeClient {
   protected url: string
   public rest: RestClient
   public auth: AuthClient
-  public http: HttpHandlerInterface
 
   constructor(projectId: string, host?: string, http?: HttpHandlerInterface) {
     let domain = 'api.deskree.com'
@@ -15,9 +14,7 @@ export class DeskreeClient {
     if (host !== undefined) domain = host
 
     this.url = `https://${projectId}.${domain}/api/v1`
-    this.http = http === undefined ? new HttpHandler(this.url) : http
-    this.rest = new RestClient(this.http)
-    this.auth = new AuthClient(this.http, this.rest)
+    this.rest = new RestClient(this.url, http)
+    this.auth = new AuthClient(this.url, this.rest, http)
   }
-
 }

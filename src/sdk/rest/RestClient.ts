@@ -1,17 +1,22 @@
-import { HttpHandlerInterface } from '../../HttpHandler'
+import { HttpHandler, HttpHandlerInterface } from '../../HttpHandler'
 import { RestQueryBuilder } from './RestQueryBuilder'
 
 export class RestClient {
 
   protected client: HttpHandlerInterface
+  protected path: string = "/rest/collections"
 
-  constructor(http: HttpHandlerInterface) {
-    this.client = http
-    this.client.createInstance('/rest/collections')
+  constructor(url: string, http?: HttpHandlerInterface) {
+    this.client = http === undefined ? new HttpHandler(url) : http
+    this.client.createInstance(this.path)
   }
 
   from(table: string) {
     return new RestQueryBuilder(table, this.client)
+  }
+
+  auth(token: string) {
+    this.client.createInstance(this.path, { 'Authentication': 'Bearer ' + token })
   }
 
 }
