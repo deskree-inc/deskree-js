@@ -1,5 +1,5 @@
-import { HttpHandlerInterface } from '../../HttpHandler'
-import { GetParamsDataType, RestQueryBuilderDataType } from '../../types/rest'
+import { HttpHandlerInterface } from '../http-handler'
+import { GetParamsDataType, RestQueryBuilderDataType } from './types'
 
 export class RestQueryBuilder implements RestQueryBuilderDataType {
 

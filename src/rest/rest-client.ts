@@ -1,5 +1,5 @@
-import { HttpHandler, HttpHandlerInterface } from '../../HttpHandler'
-import { RestQueryBuilder } from './RestQueryBuilder'
+import { HttpHandler, HttpHandlerInterface } from '../http-handler'
+import { RestQueryBuilder } from './rest-query-builder'
 
 export class RestClient {
 

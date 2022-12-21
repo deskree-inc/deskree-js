@@ -1,6 +1,6 @@
-import { DeskreeClient } from '../DeskreeClient'
-import { AuthResponse } from '../mocks/auth/AuthResponse'
-import { AuthMockHandler } from '../mocks/auth/AuthMockHandler'
+import { DeskreeClient } from '../deskree-client'
+import { AuthResponse } from './mocks/auth-response'
+import { AuthMockHandler } from './mocks/auth-mock-handler'
 
 /**
  * The project deskree-sdk is setup with all authentication providers,

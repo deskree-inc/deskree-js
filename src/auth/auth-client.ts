@@ -1,6 +1,6 @@
-import { HttpHandler, HttpHandlerInterface } from '../../HttpHandler'
-import { AuthClientDataType } from '../../types/auth'
-import { RestClient } from '../rest/RestClient'
+import { HttpHandler, HttpHandlerInterface } from '../http-handler'
+import { AuthClientDataType } from './types'
+import { RestClient } from '../rest/rest-client'
 
 export class AuthClient implements AuthClientDataType {
 

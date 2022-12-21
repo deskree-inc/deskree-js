@@ -1,6 +1,6 @@
-import { HttpHandler, HttpHandlerInterface } from './HttpHandler'
-import { AuthClient } from './sdk/auth/AuthClient'
-import { RestClient } from './sdk/rest/RestClient'
+import { HttpHandlerInterface } from './http-handler'
+import { AuthClient } from './auth/auth-client'
+import { RestClient } from './rest/rest-client'
 
 export class DeskreeClient {
 

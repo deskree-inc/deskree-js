@@ -1,7 +1,7 @@
-import { DeskreeClient } from '../DeskreeClient'
-import { RestResponse } from '../mocks/rest/RestResponse'
-import { RestMockHandler } from '../mocks/rest/RestMockHandler'
-import { ProductDataRestInterface, ProductsRestDataType } from '../mocks/rest/RestInterfaces'
+import { DeskreeClient } from '../deskree-client'
+import { RestResponse } from './mocks/rest-response'
+import { RestMockHandler } from './mocks/rest-mock-handler'
+import { ProductDataRestInterface, ProductsRestDataType } from './mocks/rest-interfaces'
 
 describe('Testing REST Module', () => {
   let response: RestResponse = new RestResponse()

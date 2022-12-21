@@ -1,4 +1,4 @@
-import { HttpHandlerInterface } from '../../HttpHandler'
+import { HttpHandlerInterface } from '../../http-handler'
 
 export class AuthMockHandler implements HttpHandlerInterface {
 
