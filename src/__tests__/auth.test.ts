@@ -2,6 +2,13 @@ import { DeskreeClient } from '../DeskreeClient'
 import { AuthResponse } from '../mocks/auth/AuthResponse'
 import { AuthMockHandler } from '../mocks/auth/AuthMockHandler'
 
+/**
+ * The project deskree-sdk is setup with all authentication providers,
+ * whereas the project deskreesdk is not setup with any authentication providers.
+ * 
+ * Use each one to test success 
+ */
+
 describe('Testing AUTH Module', () => {
   let response: AuthResponse = new AuthResponse()
   let mock_active = process.env.MOCK_ACTIVE !== undefined && process.env.MOCK_ACTIVE === 'false' ? false : true
@@ -51,6 +58,21 @@ describe('Testing AUTH Module', () => {
       await client.auth.signInWithEmailAndPassword('email@email.com', 'invalid_password')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('INVALID_PASSWORD')
+    }
+  })
+
+  test('SUCCESS: Create URL for OAuth Sign In', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskreesdk') : new DeskreeClient('deskreesdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInSuccess()))
+    const { data } = await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
+    expect(data).toEqual({})
+  })
+
+  test('FAIL: Create URL for OAuth Sign In - Identity provider configuration not found', async () => {
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new AuthMockHandler(response.createUrlForOAuthSignInIdentityProviderConfigNotFound()))
+    try {
+      await client.auth.createUrlForOAuthSignIn('google.com', 'http://localhost')
+    } catch (e: any) {
+      expect(e.response.data.errors.errors[0].detail).toEqual('OPERATION_NOT_ALLOWED : The identity provider configuration is not found.')
     }
   })
 

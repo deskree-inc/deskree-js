@@ -74,4 +74,23 @@ export class AuthResponse {
 		}
 	}
 
+	createUrlForOAuthSignInSuccess(): object {
+		return {}
+	}
+
+	createUrlForOAuthSignInIdentityProviderConfigNotFound(): object {
+		return {
+			data: null,
+			errors: {
+				errors: [
+					{
+						code: '400',
+						title: 'Bad Request',
+						detail: 'OPERATION_NOT_ALLOWED : The identity provider configuration is not found.'
+					}
+				]
+			}
+		}
+	}
+
 }

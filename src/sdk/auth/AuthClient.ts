@@ -1,13 +1,16 @@
 import { HttpHandlerInterface } from '../../HttpHandler'
 import { AuthClientDataType } from '../../types/auth'
+import { RestClient } from '../rest/RestClient'
 
 export class AuthClient implements AuthClientDataType {
 
   protected client: HttpHandlerInterface
+  protected rest: any
 
-  constructor(http: HttpHandlerInterface) {
+  constructor(http: HttpHandlerInterface, rest: any) {
     this.client = http
     this.client.createInstance('/auth/accounts')
+    this.rest = rest
   }
 
   /**
@@ -26,8 +29,14 @@ export class AuthClient implements AuthClientDataType {
    * @param password 
    * @returns 
    */
-  signInWithEmailAndPassword(email: string, password: string) {
-    return this.client.post('/sign-in/email', { email, password })
+  async signInWithEmailAndPassword(email: string, password: string) {
+    try {
+      const { data } = await this.client.post('/sign-in/email', { email, password })
+      this.rest = this.client.createInstance('/rest/collections', { 'Authentication': 'Bearer ' + data.data.idToken })
+      return data
+    } catch (e) {
+      throw e
+    }
   }
 
   /**

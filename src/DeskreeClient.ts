@@ -17,7 +17,7 @@ export class DeskreeClient {
     this.url = `https://${projectId}.${domain}/api/v1`
     this.http = http === undefined ? new HttpHandler(this.url) : http
     this.rest = new RestClient(this.http)
-    this.auth = new AuthClient(this.http)
+    this.auth = new AuthClient(this.http, this.rest)
   }
 
 }
