@@ -1,12 +1,5 @@
-import { HttpHandlerInterface } from '../HttpHandler'
-import { GetParamsDataType } from './types'
-
-interface RestQueryBuilderDataType {
-  get(params?: GetParamsDataType): any
-  insert(body: object): any
-  update(id: string, params: object): any
-  delete(id: string): any
-}
+import { HttpHandlerInterface } from '../../HttpHandler'
+import { GetParamsDataType, RestQueryBuilderDataType } from '../../types/rest'
 
 export class RestQueryBuilder implements RestQueryBuilderDataType {
 
@@ -18,6 +11,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
     this.client = client
   }
 
+  /**
+   * Perform a select query
+   * @param params 
+   * @returns 
+   */
   get(params?: GetParamsDataType) {
     if (params && params.where) {
       params.where = JSON.stringify(params.where)
@@ -26,14 +24,30 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
     return this.client.get(this.table, { params })
   }
 
+  /**
+   * Perform an insert query
+   * @param body 
+   * @returns 
+   */
   insert(body: object) {
     return this.client.post(this.table, body)
   }
 
+  /**
+   * Perform an update query
+   * @param id 
+   * @param params 
+   * @returns 
+   */
   update(id: string, params: object) {
     return this.client.patch(`${this.table}/${id}`, params)
   }
 
+  /**
+   * Perform a delete query
+   * @param id 
+   * @returns 
+   */
   delete(id: string) {
     return this.client.delete(`${this.table}/${id}`)
   }

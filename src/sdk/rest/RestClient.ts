@@ -1,4 +1,4 @@
-import { HttpHandlerInterface } from '../HttpHandler'
+import { HttpHandlerInterface } from '../../HttpHandler'
 import { RestQueryBuilder } from './RestQueryBuilder'
 
 export class RestClient {
