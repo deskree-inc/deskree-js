@@ -103,7 +103,12 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   verifyPasswordReset(oobCode: string, newPassword: string) {
-    return this.client.post('/verify/password-reset', { oobCode, newPassword })
+    try {
+      const { data } = this.client.post('/verify/password-reset', { oobCode, newPassword })
+      return data
+    } catch (e) {
+      return e
+    }
   }
 
   /**
