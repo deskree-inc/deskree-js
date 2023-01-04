@@ -1,6 +1,6 @@
-import { HttpHandlerInterface } from '../../HttpHandler'
+import { HttpHandlerInterface } from '../../http-handler'
 
-export class RestMockHandler implements HttpHandlerInterface {
+export class AuthMockHandler implements HttpHandlerInterface {
 
     protected model: any
 

@@ -1,7 +1,8 @@
-import { DeskreeClient } from '../DeskreeClient'
-import { RestResponse } from '../mocks/rest/RestResponse'
-import { RestMockHandler } from '../mocks/rest/RestMockHandler'
-import { ProductDataRestInterface, ProductsRestDataType } from '../mocks/rest/RestInterfaces'
+import { describe, test, expect, expectTypeOf } from 'vitest'
+import { DeskreeClient } from '../deskree-client'
+import { RestResponse } from './mocks/rest-response'
+import { RestMockHandler } from './mocks/rest-mock-handler'
+import { ProductDataRestInterface, ProductsRestDataType } from './mocks/rest-interfaces'
 
 describe('Testing REST Module', () => {
   let response: RestResponse = new RestResponse()
@@ -33,25 +34,25 @@ describe('Testing REST Module', () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getPage()))
     const { data }: ProductsRestDataType = await client.rest.from('products').get({ page: 1, limit: 5 })
 
-    expect(data.meta.total).toBeNumber()
-    expect(data.meta.page).toBeString()
-    expect(data.meta.limit).toBeString()
+    expectTypeOf(data.meta.total).toBeNumber()
+    expectTypeOf(data.meta.page).toBeString()
+    expectTypeOf(data.meta.limit).toBeString()
 
     data.data.map((product: ProductDataRestInterface) => {
-      expect(product).toContainKey('uid')
-      expect(product).toContainKey('attributes')
-      expect(product.attributes).toContainKey('name')
-      expect(product.attributes).toContainKey('price')
-      expect(product.attributes).toContainKey('author')
-      expect(product.attributes).toContainKey('createdAt')
-      expect(product.attributes).toContainKey('updatedAt')
+      expectTypeOf(product).toHaveProperty('uid')
+      expectTypeOf(product).toHaveProperty('attributes')
+      expectTypeOf(product.attributes).toHaveProperty('name')
+      expectTypeOf(product.attributes).toHaveProperty('price')
+      expectTypeOf(product.attributes).toHaveProperty('author')
+      expectTypeOf(product.attributes).toHaveProperty('createdAt')
+      expectTypeOf(product.attributes).toHaveProperty('updatedAt')
 
-      expect(product.uid).toBeString()
-      expect(product.attributes.name).toBeString()
-      expect(product.attributes.price).toBeNumber()
-      expect(product.attributes.author).toBeString()
-      expect(product.attributes.createdAt).toBeString()
-      expect(product.attributes.updatedAt).toBeString()
+      expectTypeOf(product.uid).toBeString()
+      expectTypeOf(product.attributes.name).toBeString()
+      expectTypeOf(product.attributes.price).toBeNumber()
+      expectTypeOf(product.attributes.author).toBeString()
+      expectTypeOf(product.attributes.createdAt).toBeString()
+      expectTypeOf(product.attributes.updatedAt).toBeString()
     })
   })
 
@@ -122,23 +123,23 @@ describe('Testing REST Module', () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingAsc()))
     const { data } = await client.rest.from('products').get({ 'sorted[param]': 'name' })
 
-    expect(data.meta.total).toBeNumber()
+    expectTypeOf(data.meta.total).toBeNumber()
 
     data.data.map((product: ProductDataRestInterface) => {
-      expect(product).toContainKey('uid')
-      expect(product).toContainKey('attributes')
-      expect(product.attributes).toContainKey('name')
-      expect(product.attributes).toContainKey('price')
-      expect(product.attributes).toContainKey('author')
-      expect(product.attributes).toContainKey('createdAt')
-      expect(product.attributes).toContainKey('updatedAt')
+      expectTypeOf(product).toHaveProperty('uid')
+      expectTypeOf(product).toHaveProperty('attributes')
+      expectTypeOf(product.attributes).toHaveProperty('name')
+      expectTypeOf(product.attributes).toHaveProperty('price')
+      expectTypeOf(product.attributes).toHaveProperty('author')
+      expectTypeOf(product.attributes).toHaveProperty('createdAt')
+      expectTypeOf(product.attributes).toHaveProperty('updatedAt')
 
-      expect(product.uid).toBeString()
-      expect(product.attributes.name).toBeString()
-      expect(product.attributes.price).toBeNumber()
-      expect(product.attributes.author).toBeString()
-      expect(product.attributes.createdAt).toBeString()
-      expect(product.attributes.updatedAt).toBeString()
+      expectTypeOf(product.uid).toBeString()
+      expectTypeOf(product.attributes.name).toBeString()
+      expectTypeOf(product.attributes.price).toBeNumber()
+      expectTypeOf(product.attributes.author).toBeString()
+      expectTypeOf(product.attributes.createdAt).toBeString()
+      expectTypeOf(product.attributes.updatedAt).toBeString()
     })
   })
 
@@ -149,23 +150,23 @@ describe('Testing REST Module', () => {
       'sorted[param]': 'price'
     })
 
-    expect(data.meta.total).toBeNumber()
+    expectTypeOf(data.meta.total).toBeNumber()
 
     data.data.map((product: ProductDataRestInterface) => {
-      expect(product).toContainKey('uid')
-      expect(product).toContainKey('attributes')
-      expect(product.attributes).toContainKey('name')
-      expect(product.attributes).toContainKey('price')
-      expect(product.attributes).toContainKey('author')
-      expect(product.attributes).toContainKey('createdAt')
-      expect(product.attributes).toContainKey('updatedAt')
+      expectTypeOf(product).toHaveProperty('uid')
+      expectTypeOf(product).toHaveProperty('attributes')
+      expectTypeOf(product.attributes).toHaveProperty('name')
+      expectTypeOf(product.attributes).toHaveProperty('price')
+      expectTypeOf(product.attributes).toHaveProperty('author')
+      expectTypeOf(product.attributes).toHaveProperty('createdAt')
+      expectTypeOf(product.attributes).toHaveProperty('updatedAt')
 
-      expect(product.uid).toBeString()
-      expect(product.attributes.name).toBeString()
-      expect(product.attributes.price).toBeNumber()
-      expect(product.attributes.author).toBeString()
-      expect(product.attributes.createdAt).toBeString()
-      expect(product.attributes.updatedAt).toBeString()
+      expectTypeOf(product.uid).toBeString()
+      expectTypeOf(product.attributes.name).toBeString()
+      expectTypeOf(product.attributes.price).toBeNumber()
+      expectTypeOf(product.attributes.author).toBeString()
+      expectTypeOf(product.attributes.createdAt).toBeString()
+      expectTypeOf(product.attributes.updatedAt).toBeString()
     })
   })
 
@@ -175,12 +176,12 @@ describe('Testing REST Module', () => {
 
     addedProduct = data.data
 
-    expect(data.data.uid).toBeString()
-    expect(data.data.name).toBeString()
-    expect(data.data.price).toBeNumber()
-    expect(data.data.author).toBeString()
-    expect(data.data.createdAt).toBeString()
-    expect(data.data.updatedAt).toBeString()
+    expectTypeOf(data.data.uid).toBeString()
+    expectTypeOf(data.data.name).toBeString()
+    expectTypeOf(data.data.price).toBeNumber()
+    expectTypeOf(data.data.author).toBeString()
+    expectTypeOf(data.data.createdAt).toBeString()
+    expectTypeOf(data.data.updatedAt).toBeString()
   })
 
   test('INSERT: FAIL - Try to add a product to the products table, but missing the required parameter name', async () => {
@@ -214,7 +215,7 @@ describe('Testing REST Module', () => {
     expect(data.data.price).toEqual(19.9)
     expect(data.data.author).toEqual(addedProduct.author)
     expect(data.data.createdAt).toEqual(addedProduct.createdAt)
-    expect(data.data.updatedAt).toBeString()
+    expectTypeOf(data.data.updatedAt).toBeString()
   })
 
   test('UPDATE: FAIL - Try to update a product that does not exist', async () => {
