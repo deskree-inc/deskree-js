@@ -1,5 +1,5 @@
 {
-  "name": "deskree-js",
+  "name": "@deskree-inc/deskree-js",
   "version": "1.0.0",
   "description": "Deskree's JavaScript SDK",
   "main": "build/index.js",
