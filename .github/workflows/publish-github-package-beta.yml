@@ -5,7 +5,8 @@ on:
     types: [published]
 
 jobs:
-  publish-gpr:
+  publish-gpr-beta:
+    if: "github.event.release.prerelease"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,6 +28,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - run: npm publish --ignore-scripts --tag deskree-js@latest
+      - run: npm publish --ignore-scripts --tag beta
         env:
           NODE_AUTH_TOKEN: ${{secrets.GH_ACCESS_TOKEN}}
