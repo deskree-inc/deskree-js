@@ -1,4 +1,4 @@
-import { describe, test, expect, expectTypeOf } from 'vitest'
+import { describe, test, expect } from 'vitest'
 import { DeskreeClient } from '../deskree-client'
 import { AuthResponse } from './mocks/auth-response'
 import { AuthMockHandler } from './mocks/auth-mock-handler'

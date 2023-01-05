@@ -1,0 +1,32 @@
+name: Github Private Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-gpr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/
+          scope: '@deskree-inc'
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Unit Tests
+        run: npm run test:cicd
+
+      - name: Update Project Version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
+      - name: Build project
+        run: npm run build
+
+      - run: npm publish --ignore-scripts --tag deskree-js@latest
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GH_ACCESS_TOKEN}}

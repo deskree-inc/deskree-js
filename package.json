@@ -4,8 +4,8 @@
   "description": "Deskree's JavaScript SDK",
   "main": "index.ts",
   "scripts": {
-    "test:cicd": "vitest",
-    "test": "export MOCK_ACTIVE=false && jest",
+    "test:cicd": "export MOCK_ACTIVE=true && vitest run",
+    "test": "export MOCK_ACTIVE=false && vitest run",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js",
     "start:dev": "npx nodemon"
@@ -44,7 +44,6 @@
     "vitest": "^0.26.2"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.1.1",
     "axios": "^1.2.0"
   }
 }
