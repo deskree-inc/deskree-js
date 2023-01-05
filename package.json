@@ -15,6 +15,9 @@
     "start": "npm run build && node build/index.js",
     "start:dev": "npx nodemon"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@deskree-inc"
+  },
   "engines": {
     "node": "16"
   },
