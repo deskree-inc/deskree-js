@@ -28,6 +28,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - run: npm publish --ignore-scripts --tag ${{ github.event.release.tag_name }}-beta
+      - run: npm publish --ignore-scripts --tag beta
         env:
           NODE_AUTH_TOKEN: ${{secrets.GH_ACCESS_TOKEN}}
