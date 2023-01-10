@@ -2,7 +2,13 @@
 
 ### Initial Setup
 
-First, install the package using npm:
+Create an .npmrc file under your root project folder, and add the following line to it:
+
+```
+@deskree-inc:registry=https://npm.pkg.github.com
+```
+
+Now, install the Deskree SDK using npm:
 
 ```
 npm install @deskree-inc/deskree-js@1.0.1
