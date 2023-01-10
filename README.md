@@ -79,3 +79,17 @@ const signUp = client.auth.signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOW
 ```
 const signIn = client.auth.signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
+
+##### Sign in / Sign up response example
+
+```
+data: {
+    "uid": string,
+    "email": string,
+    "emailVerified": boolean,
+    "disabled": boolean,
+    "idToken": string,
+    "refreshToken": string,
+    "expiresIn": string
+}
+```
