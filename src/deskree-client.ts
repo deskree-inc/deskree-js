@@ -8,13 +8,20 @@ export class DeskreeClient {
   public rest: RestClient
   public auth: AuthClient
 
-  constructor(projectId: string, host?: string, http?: HttpHandlerInterface) {
+  constructor(opts: DeskreeClientOptions) {
     let domain = 'api.deskree.com'
-    if (!projectId) throw new Error('projectId is required.')
-    if (host !== undefined) domain = host
+    if (!opts.projectId) throw new Error('projectId is required.')
+    if (opts.host !== undefined) domain = opts.host
 
-    this.url = `https://${projectId}.${domain}/api/v1`
-    this.rest = new RestClient(this.url, http)
-    this.auth = new AuthClient(this.url, this.rest, http)
+    this.url = `https://${opts.projectId}.${domain}/api/v1`
+    this.rest = new RestClient({ url: this.url, http: opts.http, axios: opts.axios })
+    this.auth = new AuthClient({ url: this.url, rest: this.rest, http: opts.http, axios: opts.axios })
   }
+}
+
+export interface DeskreeClientOptions {
+  projectId: string;
+  host?: string;
+  http?: HttpHandlerInterface;
+  axios?: any | undefined
 }

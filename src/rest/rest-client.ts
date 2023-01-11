@@ -6,8 +6,8 @@ export class RestClient {
   protected client: HttpHandlerInterface
   protected path: string = "/rest/collections"
 
-  constructor(url: string, http?: HttpHandlerInterface) {
-    this.client = http === undefined ? new HttpHandler(url) : http
+  constructor(opts: RestClientOptions) {
+    this.client = opts.http === undefined ? new HttpHandler(opts.url, opts.axios) : opts.http
     this.client.createInstance(this.path)
   }
 
@@ -19,4 +19,10 @@ export class RestClient {
     this.client.createInstance(this.path, { 'Authentication': 'Bearer ' + token })
   }
 
+}
+
+export interface RestClientOptions {
+  url: string;
+  http?: HttpHandlerInterface;
+  axios?: any | undefined;
 }

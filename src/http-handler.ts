@@ -15,11 +15,19 @@ export interface HttpHandlerInterface {
 
 export class HttpHandler implements HttpHandlerInterface {
     public url: string
-    public client?: AxiosInstance
+    public client?: AxiosInstance | any
+    public axios_manager = axios;
 
-    constructor(url: string) {
+    constructor(url: string, axios_handler?: any) {
         this.url = url
-    }
+
+        if(axios_handler !== undefined) {
+            this.axios_manager = axios_handler;
+        }
+        else {
+            this.axios_manager = axios;
+        }
+     }
 
     get(path: string, options?: object | undefined): any {
         return this.client?.get(path, options)
@@ -48,7 +56,7 @@ export class HttpHandler implements HttpHandlerInterface {
             options.headers = Object.assign(options.headers, headers)
         }
 
-        this.client = axios.create(options)
+        this.client = this.axios_manager.create(options)
     }
 
 }

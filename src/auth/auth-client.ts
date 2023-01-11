@@ -1,16 +1,17 @@
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
 import { AuthClientDataType } from './types'
 import { RestClient } from '../rest/rest-client'
+import { AuthClientOptions } from './auth-client-options'
 
 export class AuthClient implements AuthClientDataType {
 
   protected client: HttpHandlerInterface
   protected rest: any
 
-  constructor(url: string, rest?: RestClient, http?: HttpHandlerInterface) {
-    this.client = http === undefined ? new HttpHandler(url) : http
+  constructor(opts: AuthClientOptions) {
+    this.client = opts.http === undefined ? new HttpHandler(opts.url, opts.axios) : opts.http
     this.client.createInstance('/auth/accounts')
-    this.rest = rest
+    this.rest = opts.rest
   }
 
   /**

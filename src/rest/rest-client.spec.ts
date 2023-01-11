@@ -10,13 +10,13 @@ describe('Testing REST Module', () => {
   let addedProduct: any;
 
   test('GET: GENERAL SUCCESS - Check for table with no entries', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getEmpty()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getEmpty())})
     const { data } = await client.rest.from('users').get()
     expect(data).toEqual({ meta: { total: expect.any(Number) }, data: [] })
   })
 
   test('GET: GENERAL FAIL - Check for inexistent table', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getError()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getError())})
     try {
       await client.rest.from('table-does-not-exist').get()
     } catch (e: any) {
@@ -31,7 +31,7 @@ describe('Testing REST Module', () => {
   })
 
   test('GET: PAGE - Get first page of products and limit to 5 results', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getPage()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getPage())})
     const { data }: ProductsRestDataType = await client.rest.from('products').get({ page: 1, limit: 5 })
 
     expectTypeOf(data.meta.total).toBeNumber()
@@ -57,7 +57,7 @@ describe('Testing REST Module', () => {
   })
 
   test('GET: LIMIT - Limit response list to 2 products', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getLimit()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getLimit())})
     const { data } = await client.rest.from('products').get({ limit: 2 })
     expect(data).toEqual({
       meta: {
@@ -90,7 +90,7 @@ describe('Testing REST Module', () => {
   })
 
   test('GET: WHERE - Get a product where its name is Desk ', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getWhere()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getWhere())})
     const { data } = await client.rest.from('products').get({
       where: [
         {
@@ -120,7 +120,7 @@ describe('Testing REST Module', () => {
   })
 
   test('GET: SORTED[PARAM] - Return products ascending by name', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingAsc()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getSortingAsc())})
     const { data } = await client.rest.from('products').get({ 'sorted[param]': 'name' })
 
     expectTypeOf(data.meta.total).toBeNumber()
@@ -144,7 +144,7 @@ describe('Testing REST Module', () => {
   })
 
   test('GET: SORTED[PARAM] + SORTED[HOW] - Return products descending by price', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.getSortingDesc()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getSortingDesc())})
     const { data } = await client.rest.from('products').get({
       'sorted[how]': 'desc',
       'sorted[param]': 'price'
@@ -171,7 +171,7 @@ describe('Testing REST Module', () => {
   })
 
   test('INSERT: SUCCESS - Add product to products table', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.insertSuccess()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.insertSuccess())})
     const { data } = await client.rest.from('products').insert({ name: 'New product', price: 9.90 })
 
     addedProduct = data.data
@@ -185,7 +185,7 @@ describe('Testing REST Module', () => {
   })
 
   test('INSERT: FAIL - Try to add a product to the products table, but missing the required parameter name', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.insertFail()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.insertFail())})
     try {
       await client.rest.from('products').insert({ price: 9.90 })
     } catch (e: any) {
@@ -208,7 +208,7 @@ describe('Testing REST Module', () => {
   })
 
   test('UPDATE: SUCCESS - Update a product price using its id', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.updateSuccess(addedProduct)))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.updateSuccess(addedProduct))})
     const { data } = await client.rest.from('products').update(addedProduct.uid, { price: 19.90 })
 
     expect(data.data.name).toEqual(addedProduct.name)
@@ -219,7 +219,7 @@ describe('Testing REST Module', () => {
   })
 
   test('UPDATE: FAIL - Try to update a product that does not exist', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.updateFail()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.updateFail())})
     try {
       await client.rest.from('products').update('invalid_uid', { price: 10 })
     } catch (e: any) {
@@ -239,13 +239,13 @@ describe('Testing REST Module', () => {
   })
 
   test('DELETE: SUCCESS - Delete a product', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.deleteSuccess()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.deleteSuccess())})
     const { data } = await client.rest.from('products').delete(addedProduct.uid)
     expect(data).toEqual('')
   })
 
   test('DELETE: FAIL - Try to delete a product that does not exist', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient('deskree-sdk') : new DeskreeClient('deskree-sdk', undefined, new RestMockHandler(response.deleteFail()))
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.deleteFail())})
     try {
       await client.rest.from('products').delete('invalid_uid')
     } catch (e: any) {
