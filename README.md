@@ -1,6 +1,6 @@
 # Deskree's JavaScript SDK
 
-### Initial Setup
+## Initial Setup
 
 Create an .npmrc file under your root project folder, and add the following line to it:
 
@@ -11,10 +11,11 @@ Create an .npmrc file under your root project folder, and add the following line
 Now, install the Deskree SDK using npm:
 
 ```
-npm install @deskree-inc/deskree-js@1.0.1
+npm install @deskree-inc/deskree-js@1.0.4 axios --save
 ```
 
-Then, import the createClient method:
+### NodeJS Backend Projects
+Import the createClient method for NodeJS backend projects:
 
 ```
 import createClient from '@deskree-inc/deskree-js'
@@ -26,7 +27,22 @@ Now, create an instance of the client to access the modules:
 const client = createClient(YOUR_PROJECT_ID)
 ```
 
-### Rest Module
+### Frontend Projects like React, Vue or Angular
+
+Import the createWebClient method for frontend projects:
+
+```
+import createWebClient from '@deskree-inc/deskree-js'
+import axios from 'axios'
+```
+
+Now, create an instance of the client to access the modules passing the axios as second parameter: 
+
+```
+const client = createWebClient(YOUR_PROJECT_ID, axios)
+```
+
+## Rest Module
 
 To start making requests to a database table, you can structure your code like the following: 
 
@@ -36,13 +52,13 @@ const myTable = client.rest.from('YOUR_TABLE_NAME')
 
 And then you can get, insert, update and delete entries of this particular table.
 
-##### Get all entries
+#### Get all entries
 
 ```
 const allEntries = myTable.get()
 ```
 
-##### Get filtered entries
+#### Get filtered entries
 
 ```
 const filteredEntries = myTable.get({
@@ -54,39 +70,39 @@ const filteredEntries = myTable.get({
 })
 ```
 
-##### Update an entry
+#### Update an entry
 
 ```
 const updatedEntry = myTable.update(OBJECT_ID, params)
 ```
 
-##### Delete an entry
+#### Delete an entry
 
 ```
 myTable.delete(OBJECT_ID)
 ```
 
-##### Insert an entry
+#### Insert an entry
 
 ```
 const newEntry = myTable.insert(params)
 ```
 
-### Authentication Module
+## Authentication Module
 
 To start authenticating your users to your platform, here are some methods you can use. This module is still under development, so for now you can sign up and sign in users using the following methods.
 
-##### Sign up with email and password
+#### Sign up with email and password
 ```
 const signUp = client.auth.signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
-##### Sign in with email and password
+#### Sign in with email and password
 ```
 const signIn = client.auth.signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
-##### Sign in / Sign up response example
+#### Sign in / Sign up response example
 
 ```
 data: {
