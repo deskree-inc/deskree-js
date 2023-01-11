@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios'
-import * as https from 'https'
+// import * as https from 'https'
 
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false,
-})
+// const httpsAgent = new https.Agent({
+//     rejectUnauthorized: false,
+// })
 
 export interface HttpHandlerInterface {
     get(path: string, options?: object): any
@@ -41,7 +41,7 @@ export class HttpHandler implements HttpHandlerInterface {
         let options = {
             baseURL: `${this.url}${path}`,
             headers: { 'Content-Type': 'application/json' },
-            httpsAgent
+            //httpsAgent
         }
 
         if (headers !== undefined) {
