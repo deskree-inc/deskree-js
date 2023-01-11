@@ -17,7 +17,7 @@ npm install @deskree-inc/deskree-js@1.0.1
 Then, import the createClient method:
 
 ```
-import createClient from 'deskree-js'
+import createClient from '@deskree-inc/deskree-js'
 ```
 
 Now, create an instance of the client to access the modules: 
