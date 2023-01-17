@@ -6,7 +6,9 @@ Create an .npmrc file under your root project folder, and add the following line
 
 ```
 @deskree-inc:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=[ADD_YOUR_TOKEN]
 ```
+notes: You must replace the [ADD_YOUR_TOKEN] with your own token.
 
 Now, install the Deskree SDK using npm:
 
@@ -14,40 +16,32 @@ Now, install the Deskree SDK using npm:
 npm install @deskree-inc/deskree-js@1.0.4 axios --save
 ```
 
-### NodeJS Backend Projects
-Import the createClient method for NodeJS backend projects:
+### Deskree Client
+Import the createClient method for NodeJS backend projects and create an instance of the client passing the configurations required:
 
 ```
 import createClient from '@deskree-inc/deskree-js'
-```
-
-Now, create an instance of the client to access the modules: 
-
-```
-const client = createClient(YOUR_PROJECT_ID)
-```
-
-### Frontend Projects like React, Vue or Angular
-
-Import the createWebClient method for frontend projects:
-
-```
-import createWebClient from '@deskree-inc/deskree-js'
 import axios from 'axios'
+
+const options = {
+  projectId: "YOUR_PROJECT_ID",
+  axios: axios
+}
+
+/* Optional options
+* adminToken: this is the access token that you can get from Settings/Access Token
+* userToken: this is the token created with the user sign in workflow
+*/
+
+const client = createClient(options)
 ```
 
-Now, create an instance of the client to access the modules passing the axios as second parameter: 
-
-```
-const client = createWebClient(YOUR_PROJECT_ID, axios)
-```
-
-## Rest Module
+## Database Module
 
 To start making requests to a database table, you can structure your code like the following: 
 
 ```
-const myTable = client.rest.from('YOUR_TABLE_NAME')
+const myTable = client.database().from('YOUR_TABLE_NAME')
 ```
 
 And then you can get, insert, update and delete entries of this particular table.
@@ -94,12 +88,12 @@ To start authenticating your users to your platform, here are some methods you c
 
 #### Sign up with email and password
 ```
-const signUp = client.auth.signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signUp = client.auth().signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Sign in with email and password
 ```
-const signIn = client.auth.signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signIn = client.auth().signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Sign in / Sign up response example
