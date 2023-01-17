@@ -13,7 +13,7 @@ notes: You must replace the [ADD_YOUR_TOKEN] with your own token.
 Now, install the Deskree SDK using npm:
 
 ```
-npm install @deskree-inc/deskree-js@1.0.4 axios --save
+npm install @deskree-inc/deskree-js@1.0.6 axios --save
 ```
 
 ### Deskree Client
