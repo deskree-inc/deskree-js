@@ -28,6 +28,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - run: npm publish --ignore-scripts --tag beta
+      - name: Create a .npmrc file for the github private repository
+        uses: FerLuisxd/create-npmrc@3
+        with:
+          org_name: '@deskree-inc'
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GH_NPM_ACCESS_TOKEN}}
+          AUTH_TOKEN: ${{ secrets.GH_NPM_ACCESS_TOKEN }}
+
+      - run: npm publish --ignore-scripts --tag beta
