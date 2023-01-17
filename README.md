@@ -98,7 +98,7 @@ const signIn = client.auth().signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASS
 
 #### Refresh Token
 ```
-const refreshToken = client.auth.exchangeRefreshTokenForIdToken('YOUR_REFRESH_TOKEN')
+const refreshToken = client.auth().exchangeRefreshTokenForIdToken('YOUR_REFRESH_TOKEN')
 ```
 
 #### Sign in / Sign up response example
