@@ -6,6 +6,7 @@
       "es6"
     ],
     "allowJs": true,
+    "declaration": true,
     "outDir": "build",
     "rootDir": "src",
     "strict": true,
@@ -19,6 +20,8 @@
   ],
   "exclude": [
     "node_modules",
-    "build/**/*"
+    "build/**/*",
+    "**/*.spec.ts",
+    "**/*mock-handler.ts"
   ]
 }

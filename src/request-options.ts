@@ -9,4 +9,6 @@ export interface RequestOptions {
     http?: HttpHandlerInterface;
     axios?: any;
     database?: string;
+    headers?: any;
+    integration?: string;
 }

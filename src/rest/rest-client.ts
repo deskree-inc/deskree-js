@@ -10,7 +10,7 @@ export class RestClient {
   constructor(opts: RequestOptions) {
     this.client = opts.http === undefined ? new HttpHandler(opts.url, opts.axios) : opts.http
     this.path += opts.database === undefined || opts.database.trim() === "" ? "collections" : opts.database
-    this.client.createInstance(this.path)
+    this.client.createInstance(this.path, opts.headers)
 
     if(opts.options.adminToken) this.authAdmin(opts.options.adminToken);
     if(opts.options.userToken) this.auth(opts.options.userToken);

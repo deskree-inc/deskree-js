@@ -1,5 +1,6 @@
 import { AuthClient } from './auth/auth-client'
 import { ClientOptions } from './client-options'
+import { IntegrationClient } from './integration/interation-client'
 import { RestClient } from './rest/rest-client'
 
 export class DeskreeClient {
@@ -18,11 +19,15 @@ export class DeskreeClient {
   }
 
   database(name: string = "collections", options?: ClientOptions) : RestClient {
-    this.rest = new RestClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, database: name })
+    this.rest = new RestClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, database: name.toLowerCase(), headers: options?.headers })
     return this.rest
   }
 
   auth() : AuthClient {
     return new AuthClient({ options: this.opts, url: this.url, rest: this.rest, http: this.opts.http, axios: this.opts.axios })
+  }
+
+  integration(name: string, options?: ClientOptions) {
+    return new IntegrationClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, integration: name.toLowerCase(), headers: options?.headers })
   }
 }
