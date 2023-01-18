@@ -109,7 +109,7 @@ data: {
 
 ## Integration Module
 
-To start using the integrations configured in your projects, just follow those simple examples:
+To start using the integrations configured in your projects, just follow this simple example:
 
 ```
 let customers = [];
@@ -121,7 +121,9 @@ if (results.status === 200) {
 
 ```
 
-The integration() function receive as parameter the name of the integration in lower case format. You will use the following REST functions:
+The integration() function receive as parameter the name of the integration in lower case format, also the second parameters is the headers required for custom requests. 
+
+You will use the following REST functions:
 
 - get()
 - post()
@@ -133,3 +135,33 @@ Each function receive 2 parameters:
 
 - path: this is the path of the integration endpoint. Example Stripe Customers Endpoint is "customers".
 - options: this is a JavaScript object with body or params to be send in the Request method.
+
+#### GET + Params Example
+
+```
+
+let customers = [];
+let results = await client.integration("stripe").get("/customers". { params: { email: "customer@email.com" } });
+
+if (results.status === 200) {
+  customers = results.data.data;
+}
+
+```
+
+#### POST + Body + Custom Headers Example
+
+By default the Content-Type is "application/json", but you can override this value passing your own headers. To create a new customer in Stripe, we must add a custom header. 
+
+```
+
+const qs = require('qs');
+
+let customer = {};
+let results = await client.integration("stripe", { "Content-Type": "application/x-www-form-urlencoded" }).post("/customers". qs.stringify({ email: "customer@email.com" }));
+
+if (results.status === 200) {
+  customer = results.data.data;
+}
+
+```

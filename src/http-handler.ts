@@ -51,13 +51,20 @@ export class HttpHandler implements HttpHandlerInterface {
     }
 
     createInstance(path: string, headers?: any): void {
-        let options = {
+        let options: any = {
             baseURL: `${this.url}${path}`,
-            headers: { 'Content-Type': 'application/json' },
+            headers: {}
             //httpsAgent
         }
 
-        if (headers !== undefined) {
+        if(headers === undefined) {
+            options.headers['Content-Type'] = 'application/json'
+        }
+        else {
+            if(headers['Content-Type'] === undefined) {
+                options.headers['Content-Type'] = 'application/json'
+            }
+
             options.headers = Object.assign(options.headers, headers)
         }
 
