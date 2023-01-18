@@ -32,10 +32,11 @@ jobs:
         run: |
           npm config set registry https://registry.npmjs.com/
           rm .npmrc
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          echo '@deskree:registry=https://registry.npmjs.org' >> .npmrc
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
           cat .npmrc
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
+          NPM_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
 
       - name: Build project
         run: npm run build
