@@ -32,6 +32,7 @@ jobs:
         run: |
           npm config set registry https://registry.npmjs.com/
           rm .npmrc
+          echo '@deskree:registry=https://registry.npmjs.org' >> .npmrc
           echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
           cat .npmrc
         env:
