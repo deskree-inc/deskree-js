@@ -1,0 +1,68 @@
+name: Github Private Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-npm-prod:
+    if: "!github.event.release.prerelease"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Change the JSON package information
+        run: |
+          sed "s/@deskree-inc/@deskree/g" ./package.json > package_tmp_1.json && mv package_tmp_1.json ./package.json
+          sed "s/npm.pkg.github.com/registry.npmjs.org/g" ./package.json > package_tmp_2.json && mv package_tmp_2.json ./package.json
+
+      - name: Install NPM Dependencies
+        run: npm install
+
+      - name: Unit Tests
+        run: npm run test:cicd
+
+      - name: Update Project Version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
+      - name: Build project
+        run: npm run build
+
+      - run: npm publish --ignore-scripts --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.DESKREE_NPM_ACCESS_TOKEN}}
+
+  publish-gpr-beta:
+    if: "github.event.release.prerelease"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://npm.pkg.github.com/'
+          scope: '@deskree-inc'
+
+      - name: Install NPM Dependencies
+        run: npm ci
+
+      - name: Unit Tests
+        run: npm run test:cicd
+
+      - name: Update Project Version
+        run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create a .npmrc file for the github private repository
+        uses: FerLuisxd/create-npmrc@3
+        with:
+          org_name: '@deskree-inc'
+        env:
+          AUTH_TOKEN: ${{ secrets.GH_NPM_ACCESS_TOKEN }}
+
+      - run: npm publish --ignore-scripts --tag beta
