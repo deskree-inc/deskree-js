@@ -30,6 +30,7 @@ jobs:
 
       - name: Configure npm
         run: |
+          npm config set registry https://registry.npmjs.com/
           rm .npmrc
           echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
           cat .npmrc
@@ -39,7 +40,7 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - run: npm publish --ignore-scripts
+      - run: npm publish --access public
 
   publish-gpr-beta:
     if: "github.event.release.prerelease"
