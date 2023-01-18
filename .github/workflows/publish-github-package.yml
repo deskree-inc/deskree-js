@@ -16,7 +16,7 @@ jobs:
 
       - name: Change the JSON package information
         run: |
-          sed "s/@deskree-inc\//@deskree/g" ./package.json > package_tmp_1.json && mv package_tmp_1.json ./package.json
+          sed "s/@deskree-inc/@deskree/g" ./package.json > package_tmp_1.json && mv package_tmp_1.json ./package.json
           sed "s/\"registry\": \"https:\/\/npm.pkg.github.com\/@deskree-inc\"//g" ./package.json > package_tmp_4.json && mv package_tmp_4.json ./package.json
 
       - name: Install NPM Dependencies
