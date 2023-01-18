@@ -28,12 +28,18 @@ jobs:
       - name: Update Project Version
         run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
+      - name: Configure npm
+        run: |
+          rm .npmrc
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          cat .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
+
       - name: Build project
         run: npm run build
 
-      - run: npm publish --ignore-scripts --tag beta
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.DESKREE_NPM_ACCESS_TOKEN}}
+      - run: npm publish --ignore-scripts
 
   publish-gpr-beta:
     if: "github.event.release.prerelease"
