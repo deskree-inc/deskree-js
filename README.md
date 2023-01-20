@@ -12,7 +12,7 @@ npm install @deskree/deskree-js@latest axios --save
 Import the createClient method for NodeJS backend projects and create an instance of the client passing the configurations required:
 
 ```
-import createClient from '@deskree-inc/deskree-js'
+import createClient from '@deskree/deskree-js'
 import axios from 'axios'
 
 const options = {
