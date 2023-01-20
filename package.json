@@ -12,6 +12,7 @@
     "test:cicd": "export MOCK_ACTIVE=true && vitest run",
     "test": "export MOCK_ACTIVE=false && vitest run",
     "build": "rimraf ./build && tsc",
+    "build:ts": "rimraf ./types && tsc --declaration --allowJs --emitDeclarationOnly --outDir types",
     "start": "npm run build && node build/index.js",
     "start:dev": "npx nodemon"
   },

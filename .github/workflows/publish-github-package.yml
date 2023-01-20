@@ -13,11 +13,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org/'
+          scope: '@deskree'
 
       - name: Change the JSON package information
         run: |
           sed "s/@deskree-inc/@deskree/g" ./package.json > package_tmp_1.json && mv package_tmp_1.json ./package.json
-          sed "s/npm.pkg.github.com/registry.npmjs.org/g" ./package.json > package_tmp_2.json && mv package_tmp_2.json ./package.json
+          sed "s/\"registry\": \"https:\/\/npm.pkg.github.com\/@deskree-inc\"//g" ./package.json > package_tmp_4.json && mv package_tmp_4.json ./package.json
 
       - name: Install NPM Dependencies
         run: npm install
@@ -28,19 +30,22 @@ jobs:
       - name: Update Project Version
         run: npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
-      - name: Configure npm
-        run: |
-          npm config set registry https://registry.npmjs.com/
-          rm .npmrc
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
-          cat .npmrc
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
+      # - name: Configure npm
+      #   run: |
+      #     rm .npmrc
+      #     echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> .npmrc
+      #     echo '_auth=${NPM_TOKEN}' >> .npmrc
+      #     echo 'email=m.castillo@deskree.com' >> .npmrc
+      #     cat .npmrc
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
 
       - name: Build project
         run: npm run build
 
       - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.DESKREE_NPM_ACCESS_TOKEN }}
 
   publish-gpr-beta:
     if: "github.event.release.prerelease"

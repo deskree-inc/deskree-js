@@ -8,6 +8,7 @@ import axios, { AxiosInstance } from 'axios'
 export interface HttpHandlerInterface {
     get(path: string, options?: object): any
     post(path: string, options?: object): any
+    put(path: string, options?: object): any
     patch(path: string, options?: object): any
     delete(path: string, options?: object): any
     createInstance(path: string, headers?: any): void
@@ -37,6 +38,10 @@ export class HttpHandler implements HttpHandlerInterface {
         return this.client?.post(path, options)
     }
 
+    put(path: string, options?: object | undefined): any {
+        return this.client?.put(path, options)
+    }
+
     patch(path: string, options?: object | undefined): any {
         return this.client?.patch(path, options)
     }
@@ -46,13 +51,20 @@ export class HttpHandler implements HttpHandlerInterface {
     }
 
     createInstance(path: string, headers?: any): void {
-        let options = {
+        let options: any = {
             baseURL: `${this.url}${path}`,
-            headers: { 'Content-Type': 'application/json' },
+            headers: {}
             //httpsAgent
         }
 
-        if (headers !== undefined) {
+        if(headers === undefined) {
+            options.headers['Content-Type'] = 'application/json'
+        }
+        else {
+            if(headers['Content-Type'] === undefined) {
+                options.headers['Content-Type'] = 'application/json'
+            }
+
             options.headers = Object.assign(options.headers, headers)
         }
 

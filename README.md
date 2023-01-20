@@ -2,18 +2,10 @@
 
 ## Initial Setup
 
-Create an .npmrc file under your root project folder, and add the following line to it:
+Install the Deskree SDK using npm:
 
 ```
-@deskree-inc:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=[ADD_YOUR_TOKEN]
-```
-notes: You must replace the [ADD_YOUR_TOKEN] with your own token.
-
-Now, install the Deskree SDK using npm:
-
-```
-npm install @deskree-inc/deskree-js@1.0.6 axios --save
+npm install @deskree/deskree-js@latest axios --save
 ```
 
 ### Deskree Client
@@ -49,13 +41,13 @@ And then you can get, insert, update and delete entries of this particular table
 #### Get all entries
 
 ```
-const allEntries = myTable.get()
+const allEntries = await myTable.get()
 ```
 
 #### Get filtered entries
 
 ```
-const filteredEntries = myTable.get({
+const filteredEntries = await myTable.get({
   page: 1,
   where: '',
   limit: 10,
@@ -67,19 +59,19 @@ const filteredEntries = myTable.get({
 #### Update an entry
 
 ```
-const updatedEntry = myTable.update(OBJECT_ID, params)
+const updatedEntry = await myTable.update(OBJECT_ID, params)
 ```
 
 #### Delete an entry
 
 ```
-myTable.delete(OBJECT_ID)
+await myTable.delete(OBJECT_ID)
 ```
 
 #### Insert an entry
 
 ```
-const newEntry = myTable.insert(params)
+const newEntry = await myTable.insert(params)
 ```
 
 ## Authentication Module
@@ -88,17 +80,17 @@ To start authenticating your users to your platform, here are some methods you c
 
 #### Sign up with email and password
 ```
-const signUp = client.auth().signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signUp = await client.auth().signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Sign in with email and password
 ```
-const signIn = client.auth().signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signIn = await client.auth().signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Refresh Token
 ```
-const refreshToken = client.auth().exchangeRefreshTokenForIdToken('YOUR_REFRESH_TOKEN')
+const refreshToken = await client.auth().exchangeRefreshTokenForIdToken('YOUR_REFRESH_TOKEN')
 ```
 
 #### Sign in / Sign up response example
@@ -113,4 +105,63 @@ data: {
     "refreshToken": string,
     "expiresIn": string
 }
+```
+
+## Integration Module
+
+To start using the integrations configured in your projects, just follow this simple example:
+
+```
+let customers = [];
+let results = await client.integration("stripe").get("/customers");
+
+if (results.status === 200) {
+  customers = results.data.data;
+}
+
+```
+
+The integration() function receive as parameter the name of the integration in lower case format, also the second parameters is the headers required for custom requests. 
+
+You will use the following REST functions:
+
+- get()
+- post()
+- put()
+- patch()
+- delete()
+
+Each function receive 2 parameters:
+
+- path: this is the path of the integration endpoint. Example Stripe Customers Endpoint is "customers".
+- options: this is a JavaScript object with body or params to be send in the Request method.
+
+#### GET + Params Example
+
+```
+
+let customers = [];
+let results = await client.integration("stripe").get("/customers". { params: { email: "customer@email.com" } });
+
+if (results.status === 200) {
+  customers = results.data.data;
+}
+
+```
+
+#### POST + Body + Custom Headers Example
+
+By default the Content-Type is "application/json", but you can override this value passing your own headers. To create a new customer in Stripe, we must add a custom header. 
+
+```
+
+const qs = require('qs');
+
+let customer = {};
+let results = await client.integration("stripe", { "Content-Type": "application/x-www-form-urlencoded" }).post("/customers". qs.stringify({ email: "customer@email.com" }));
+
+if (results.status === 200) {
+  customer = results.data.data;
+}
+
 ```

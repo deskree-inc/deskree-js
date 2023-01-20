@@ -7,4 +7,5 @@ export interface ClientOptions {
   axios?: any | undefined;
   adminToken?: string;
   userToken?: string;
+  headers?: any;
 }
