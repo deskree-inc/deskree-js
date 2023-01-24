@@ -80,17 +80,17 @@ To start authenticating your users to your platform, here are some methods you c
 
 #### Sign up with email and password
 ```
-const signUp = await client.auth().signUpWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signUp = await client.auth().signUpEmail('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Sign in with email and password
 ```
-const signIn = await client.auth().signInWithEmailAndPassword('YOUR_EMAIL', 'YOUR_PASSOWRD')
+const signIn = await client.auth().signInEmail('YOUR_EMAIL', 'YOUR_PASSOWRD')
 ```
 
 #### Refresh Token
 ```
-const refreshToken = await client.auth().exchangeRefreshTokenForIdToken('YOUR_REFRESH_TOKEN')
+const refreshToken = await client.auth().refreshToken('YOUR_REFRESH_TOKEN')
 ```
 
 #### Sign in / Sign up response example
