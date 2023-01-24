@@ -16,7 +16,7 @@ export type WhereDataType = {
 export type RestQueryBuilderDataType = {
   get(params?: GetParamsDataType): any
   getByUID(uid: string): any
-  insert(body: object): any
+  create(body: object): any
   update(uid: string, params: object): any
   delete(uid: string): any
 }

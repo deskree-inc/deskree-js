@@ -34,11 +34,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
   }
 
   /**
-   * Perform an insert query
+   * Perform an create query
    * @param body 
    * @returns 
    */
-  insert(body: object) {
+  create(body: object) {
     return this.client.post(this.table, body)
   }
 

@@ -36,7 +36,7 @@ To start making requests to a database table, you can structure your code like t
 const myTable = client.database().from('YOUR_TABLE_NAME')
 ```
 
-And then you can get, insert, update and delete entries of this particular table.
+And then you can get, create, update and delete entries of this particular table.
 
 #### Get all entries
 
@@ -68,10 +68,10 @@ const updatedEntry = await myTable.update(OBJECT_ID, params)
 await myTable.delete(OBJECT_ID)
 ```
 
-#### Insert an entry
+#### Create an entry
 
 ```
-const newEntry = await myTable.insert(params)
+const newEntry = await myTable.create(params)
 ```
 
 ## Authentication Module
