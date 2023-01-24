@@ -25,6 +25,15 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
   }
 
   /**
+   * Perform a select query
+   * @param params 
+   * @returns 
+   */
+  getById(id: string) {
+    return this.client.get(`${this.table}/${id}`)
+  }
+
+  /**
    * Perform an insert query
    * @param body 
    * @returns 
