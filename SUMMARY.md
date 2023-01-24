@@ -13,3 +13,6 @@
 * [AUTH Module](auth-module/README.md)
   * [signInEmail()](auth-module/signinemail.md)
   * [signUpEmail()](auth-module/signupemail.md)
+  * [refreshToken()](auth-module/refreshtoken.md)
+  * [createUrlForOAuthSignIn()](auth-module/createurlforoauthsignin.md)
+  * [signInOAuth()](auth-module/signinoauth.md)

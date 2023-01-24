@@ -15,11 +15,9 @@ Sign in with email and password.
 
 ### Example
 
-{% code overflow="wrap" %}
 ```javascript
 const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345')
 ```
-{% endcode %}
 
 ## Response
 
@@ -37,7 +35,6 @@ const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345'
 
 ### Example
 
-{% code overflow="wrap" %}
 ```json
 {
     "data": {
@@ -51,4 +48,3 @@ const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345'
     }
 }
 ```
-{% endcode %}
