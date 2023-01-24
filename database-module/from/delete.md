@@ -18,9 +18,11 @@ If you delete an object the associated file will automatically be deleted in sto
 
 #### Delete
 
+{% code overflow="wrap" %}
 ```javascript
 const product = await client.table('products').delete("tTvKpi6E7N68Xv8RJOug")
 ```
+{% endcode %}
 
 ## Response
 
@@ -50,6 +52,7 @@ const product = await client.table('products').delete("tTvKpi6E7N68Xv8RJOug")
 
 This is an example response to the [Delete](delete.md#delete) request example above.
 
+{% code overflow="wrap" %}
 ```json
 {
     "data": {
@@ -63,3 +66,4 @@ This is an example response to the [Delete](delete.md#delete) request example ab
     }
 }
 ```
+{% endcode %}
