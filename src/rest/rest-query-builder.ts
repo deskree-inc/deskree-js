@@ -1,5 +1,5 @@
 import { HttpHandlerInterface } from '../http-handler'
-import { GetParamsDataType, RestQueryBuilderDataType } from './types'
+import { CreateParamsDataType, GetByUIDParamsDataType, GetParamsDataType, RestQueryBuilderDataType, UpdateParamsDataType } from './types'
 
 export class RestQueryBuilder implements RestQueryBuilderDataType {
 
@@ -29,8 +29,8 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @param params 
    * @returns 
    */
-  getByUID(uid: string) {
-    return this.client.get(`${this.table}/${uid}`)
+  getByUID(uid: string, params?: GetByUIDParamsDataType) {
+    return this.client.get(`${this.table}/${uid}`, { params })
   }
 
   /**
@@ -38,8 +38,8 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @param body 
    * @returns 
    */
-  create(body: object) {
-    return this.client.post(this.table, body)
+  create(body: object, params?: CreateParamsDataType) {
+    return this.client.post(this.table, body, { params })
   }
 
   /**
@@ -48,8 +48,8 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @param params 
    * @returns 
    */
-  update(uid: string, params: object) {
-    return this.client.patch(`${this.table}/${uid}`, params)
+  update(uid: string, body: object, params?: UpdateParamsDataType) {
+    return this.client.patch(`${this.table}/${uid}`, body, { params })
   }
 
   /**
