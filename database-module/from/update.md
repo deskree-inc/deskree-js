@@ -26,7 +26,6 @@ You do not need to pass the entire object to update it. The system will only upd
 
 #### Update
 
-{% code overflow="wrap" %}
 ```javascript
 const product = await client.table('products').update("tTvKpi6E7N68Xv8RJOug", {
     "name": "Hat",
@@ -34,11 +33,9 @@ const product = await client.table('products').update("tTvKpi6E7N68Xv8RJOug", {
     "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80"
 })
 ```
-{% endcode %}
 
 #### Update and skip file upload errors
 
-{% code overflow="wrap" %}
 ```javascript
 const product = await client.table('products').update("tTvKpi6E7N68Xv8RJOug", 
     {
@@ -51,7 +48,6 @@ const product = await client.table('products').update("tTvKpi6E7N68Xv8RJOug",
     }
 )
 ```
-{% endcode %}
 
 ## Response
 
@@ -83,7 +79,6 @@ const product = await client.table('products').update("tTvKpi6E7N68Xv8RJOug",
 
 This is an example response to the [Update and skip file upload errors ](update.md#create-and-skip-file-upload-errors)request example above with an imaginary error during file upload. As you can see, the object is still created, but the `image` property is set to an empty string.
 
-{% code overflow="wrap" %}
 ```json
 {
     "data": {
@@ -106,4 +101,3 @@ This is an example response to the [Update and skip file upload errors ](update.
     }
 }
 ```
-{% endcode %}

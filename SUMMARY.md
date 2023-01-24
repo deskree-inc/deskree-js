@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Overview](README.md)
-* [Installation](installation.md)
 * [Authorization](authorization.md)
+* [createClient() Method](createclient-method.md)
 * [Database Module](database-module/README.md)
   * [from()](database-module/from/README.md)
     * [get()](database-module/from/get.md)
