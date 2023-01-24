@@ -8,9 +8,7 @@ Exchange `refreshToken` for `idToken`
 
 ### Parameters
 
-| Field          | Data Type | Description                                                                                                                                                                                                                                         |
-| -------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| refresh\_token | string    | <p>Refresh token obtained from sign-up or sign-in methods<br><code></code><br><code></code>Examples: <br><a href="signinemail.md">signInEmail()</a><br><a href="signupemail.md">signUpEmail()</a><br><a href="signinoauth.md">signInOAuth()</a></p> |
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>refresh_token</td><td>true</td><td>string</td><td>Refresh token obtained from sign-up or sign-in methods<br><code></code><br><code></code>Examples: <br><a href="signinemail.md">signInEmail()</a><br><a href="signupemail.md">signUpEmail()</a><br><a href="signinoauth.md">signInOAuth()</a></td></tr></tbody></table>
 
 ### Example
 

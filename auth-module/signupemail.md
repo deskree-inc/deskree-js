@@ -8,10 +8,7 @@ Signup with the provided email and password. The endpoint will also automaticall
 
 ### Parameters
 
-| Field    | Data Type | Description   |
-| -------- | --------- | ------------- |
-| email    | string    | User email    |
-| password | string    | User password |
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>email</td><td>true</td><td>string</td><td>User email</td></tr><tr><td>password</td><td>true</td><td>string</td><td>User password</td></tr></tbody></table>
 
 ### Example
 

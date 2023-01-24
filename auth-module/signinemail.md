@@ -8,10 +8,7 @@ Sign in with email and password.
 
 ### Parameters
 
-| Field    | Data Type | Description   |
-| -------- | --------- | ------------- |
-| email    | string    | User email    |
-| password | string    | User password |
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>email</td><td>true</td><td>string</td><td>User email</td></tr><tr><td>password</td><td>true</td><td>string</td><td>User password</td></tr></tbody></table>
 
 ### Example
 
@@ -35,9 +32,8 @@ const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345'
 
 ### Example
 
-```json
-{
-    "data": {
+<pre class="language-json"><code class="lang-json"><strong>{
+</strong>    "data": {
         "uid": "g16bsf2DN9X3CbGN1osmAjpHlF83",
         "email": "user@example.com",
         "emailVerified": false,
@@ -47,4 +43,4 @@ const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345'
         "expiresIn": "3600"
     }
 }
-```
+</code></pre>

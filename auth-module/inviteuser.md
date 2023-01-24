@@ -8,9 +8,7 @@ Send an invite to a user via email. The system will first create a user in a dis
 
 ### Parameters
 
-| Field | Data Type | Description |
-| ----- | --------- | ----------- |
-| email | string    | User email  |
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>email</td><td>true</td><td>string</td><td>User email</td></tr></tbody></table>
 
 ### Example
 
