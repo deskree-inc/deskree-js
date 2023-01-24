@@ -20,15 +20,15 @@ const signIn = await client.auth().signInEmail('user@example.com', 'qwerty12345'
 
 ### Parameters
 
-| Field         | Data Type | Description                                                                                                                                                             |
-| ------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| uid           | string    | User email                                                                                                                                                              |
-| email         | string    | User password                                                                                                                                                           |
-| emailVerified | boolean   | Whether the user has verified their email by following the link sent to their email.                                                                                    |
-| disabled      | boolean   | <p>Whether the user account is disabled.<br><br>It will be set to <code>false</code> if email verification is enforced and the user hasn't verified the email yet. </p> |
-| idToken       | string    | User authorization token that should be used for requests that require authorization. View [Permissions](broken-reference) for more information.                        |
-| refreshToken  | string    | Token that can be used to refresh idToken via [exchangeRefreshTokenForIdToken() ](broken-reference)method                                                               |
-| expiresIn     | string    | How long the token is valid for (in seconds).                                                                                                                           |
+| Field         | Data Type | Description                                                                                                                                                                                                        |
+| ------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| uid           | string    | User email                                                                                                                                                                                                         |
+| email         | string    | User password                                                                                                                                                                                                      |
+| emailVerified | boolean   | Whether the user has verified their email by following the link sent to their email.                                                                                                                               |
+| disabled      | boolean   | <p>Whether the user account is disabled.<br><br>It will be set to <code>false</code> if email verification is enforced and the user hasn't verified the email yet. </p>                                            |
+| idToken       | string    | User authorization token that should be used for requests that require authorization. View [Permissions](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/middleware/permissions) for more information. |
+| refreshToken  | string    | Token that can be used to refresh idToken via [refreshToken() ](refreshtoken.md)method                                                                                                                             |
+| expiresIn     | string    | How long the token is valid for (in seconds).                                                                                                                                                                      |
 
 ### Example
 

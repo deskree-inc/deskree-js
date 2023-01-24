@@ -12,7 +12,7 @@ Create an object in the database
 
 #### Options Object Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>skipFileExceptions</td><td>false</td><td>boolean</td><td><p>If set to <code>true</code> will skip file upload exceptions in the back-end and will return <code>200</code> even if there is an error during downloading/uploading of files.</p><p></p><p><a href="broken-reference">Read more</a> </p></td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>skipFileExceptions</td><td>false</td><td>boolean</td><td><p>If set to <code>true</code> will skip file upload exceptions in the back-end and will return <code>200</code> even if there is an error during downloading/uploading of files.</p><p></p><p><a href="https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/other/uploading-files">Read more</a> </p></td></tr></tbody></table>
 
 ### Examples
 

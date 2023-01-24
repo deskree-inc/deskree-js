@@ -1,6 +1,6 @@
 # Authorization
 
-Deskree has a [Permissions](https://docs.deskree.com/documentation/fundamentals/middleware/permissions) feature that allows to define endpoint-level permissions for databases and integrations. Hence, based on the configuration, some of the requests require `Authorization` header with a valid user `idToken` or even `deskree-admin` header with Deskree Admin Token to proceed.&#x20;
+Deskree has a [Permissions](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/middleware/permissions) feature that allows to define endpoint-level permissions for databases and integrations. Hence, based on the configuration, some of the requests require `Authorization` header with a valid user `idToken` or even `deskree-admin` header with Deskree Admin Token to proceed.&#x20;
 
 ## User Token
 
@@ -37,7 +37,7 @@ const client = createClient(options)
 For the requests that require an Admin Token, make sure you are passing a valid token when creating a client.
 
 {% hint style="danger" %}
-DANGER: Always keep your Deskree Admin token secure as it is a very powerful token that may allow unwanted access to your data if compromised. If you believe that is the case, you can always [refresh your token](broken-reference).&#x20;
+DANGER: Always keep your Deskree Admin token secure as it is a very powerful token that may allow unwanted access to your data if compromised. If you believe that is the case, you can always [refresh your token](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/other/admin-token#refresh-token).&#x20;
 {% endhint %}
 
 ### Example
@@ -64,6 +64,6 @@ const client = createClient(options)
 
 ## Useful Resources
 
-* Authentication
-* How to use permissions?
-* Admin Token
+* [Authentication](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/authentication)
+* [How to use permissions?](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/get-started/how-to-use-permissions)
+* [Admin Token](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/other/admin-token)

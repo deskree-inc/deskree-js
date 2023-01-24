@@ -8,7 +8,7 @@ Endpoint to verify password reset request based on `oobCode` provided in the ema
 
 ### Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>oobCode</td><td>true</td><td>string</td><td>Can be found in the URL sent to the user by the <a href="broken-reference">inviteUser()</a> method.</td></tr><tr><td>newPassword</td><td>true</td><td>string</td><td>New password for the user</td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>oobCode</td><td>true</td><td>string</td><td>Can be found in the URL sent to the user by the <a href="resetpassword.md">resetPassword()</a> method.</td></tr><tr><td>newPassword</td><td>true</td><td>string</td><td>New password for the user</td></tr></tbody></table>
 
 ### Example
 

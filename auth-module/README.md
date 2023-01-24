@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-AUTH Module handles all requests associated with users' accounts data and is based on [AUTH REST API](broken-reference).
+AUTH Module handles all requests associated with users' accounts data and is based on [AUTH REST API](https://app.gitbook.com/s/XSWt74WFLvclje14OaLt/auth-apis).
 
 ## **auth() Methods**
 

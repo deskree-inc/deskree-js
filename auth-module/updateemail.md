@@ -8,7 +8,7 @@ Update the user email.
 
 {% hint style="warning" %}
 Make sure you send `userToken` is passed to `createClient`()  method as this request always requires authorization. \
-[Read more about authorization.](broken-reference)
+[Read more about authorization.](../authorization.md)
 {% endhint %}
 
 ### Parameters

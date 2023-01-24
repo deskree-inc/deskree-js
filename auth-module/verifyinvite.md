@@ -8,7 +8,7 @@ Endpoint to verify invitation based on `oobCode` and `uid` provided in the email
 
 ### Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>oobCode</td><td>true</td><td>string</td><td>Can be found in the URL sent to the user by the <a href="broken-reference">inviteUser()</a> method.</td></tr><tr><td>uid</td><td>true</td><td>string</td><td>User UID</td></tr><tr><td>newPassword</td><td>true</td><td>string</td><td>Password set by the invited user</td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>oobCode</td><td>true</td><td>string</td><td>Can be found in the URL sent to the user by the <a href="inviteuser.md">inviteUser()</a> method.</td></tr><tr><td>uid</td><td>true</td><td>string</td><td>User UID</td></tr><tr><td>newPassword</td><td>true</td><td>string</td><td>Password set by the invited user</td></tr></tbody></table>
 
 ### Example
 

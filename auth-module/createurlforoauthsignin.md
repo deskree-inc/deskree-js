@@ -22,11 +22,11 @@ const OAuthSignInURL = await client.auth().createUrlForOAuthSignIn('google.com',
 
 ### Parameters
 
-| Field      | Data Type | Description                                                                                                                                                       |
-| ---------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| authUri    | string    | The authorization URI for the requested provider. This is where the user needs to be redirected to complete the OAUTH sign-in with the provider.                  |
-| providerId | string    | The provider ID from the request.                                                                                                                                 |
-| sessionId  | string    | The session ID from the request. It is used to prevent session fixation attacks. This property will be used for the [signInWithOAuth()](broken-reference) method. |
+| Field      | Data Type | Description                                                                                                                                                 |
+| ---------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| authUri    | string    | The authorization URI for the requested provider. This is where the user needs to be redirected to complete the OAUTH sign-in with the provider.            |
+| providerId | string    | The provider ID from the request.                                                                                                                           |
+| sessionId  | string    | The session ID from the request. It is used to prevent session fixation attacks. This property will be used for the [signInOAuth()](signinoauth.md) method. |
 
 ### Example
 

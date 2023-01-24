@@ -22,12 +22,12 @@ const idToken = await client.auth().refreshToken('AOEOulbFrpu25a7BwDxFzjPp67kenv
 
 ### Parameters
 
-| Field        | Data Type | Description                                                                                                                                      |
-| ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| user\_id     | string    | UID of the user                                                                                                                                  |
-| idToken      | string    | User authorization token that should be used for requests that require authorization. View [Permissions](broken-reference) for more information. |
-| refreshToken | string    | Token that can be used to refresh idToken via [refreshToken()](refreshtoken.md) method                                                           |
-| expiresIn    | string    | How long the token is valid for (in seconds).                                                                                                    |
+| Field        | Data Type | Description                                                                                                                                                                                                        |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| user\_id     | string    | UID of the user                                                                                                                                                                                                    |
+| idToken      | string    | User authorization token that should be used for requests that require authorization. View [Permissions](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/middleware/permissions) for more information. |
+| refreshToken | string    | Token that can be used to refresh idToken via [refreshToken()](refreshtoken.md) method                                                                                                                             |
+| expiresIn    | string    | How long the token is valid for (in seconds).                                                                                                                                                                      |
 
 ### Example
 
