@@ -1,12 +1,12 @@
 import {
 	AuthResponseErrorInterface,
-	SignUpWithEmailAndPasswordInterface,
+	SignUpEmailInterface,
 	CreateUrlForOAuthSignInSuccessInterface
 } from "./auth-response.interface"
 
 export class AuthResponse {
 
-	signUpWithEmailAndPasswordSetupSuccess(): SignUpWithEmailAndPasswordInterface {
+	signUpEmailSetupSuccess(): SignUpEmailInterface {
 		return {
 			data: {
 				uid: '3wZAV6ulYZVS8jj1mXW7WBvLF4c2',
@@ -20,7 +20,7 @@ export class AuthResponse {
 		}
 	}
 
-	signUpWithEmailAndPasswordSetupNotComplete(): AuthResponseErrorInterface {
+	signUpEmailSetupNotComplete(): AuthResponseErrorInterface {
 		return {
 			data: null,
 			errors: {
@@ -35,7 +35,7 @@ export class AuthResponse {
 		}
 	}
 
-	signUpWithEmailAndPasswordEmailAlreadyInUse(): AuthResponseErrorInterface {
+	signUpEmailEmailAlreadyInUse(): AuthResponseErrorInterface {
 		return {
 			data: null,
 			errors: {
@@ -50,7 +50,7 @@ export class AuthResponse {
 		}
 	}
 
-	signInWithEmailAndPasswordEmailNotFound(): AuthResponseErrorInterface {
+	signInEmailEmailNotFound(): AuthResponseErrorInterface {
 		return {
 			data: null,
 			errors: {
@@ -65,7 +65,7 @@ export class AuthResponse {
 		}
 	}
 
-	signInWithEmailAndPasswordInvalidPassword(): AuthResponseErrorInterface {
+	signInEmailInvalidPassword(): AuthResponseErrorInterface {
 		return {
 			data: null,
 			errors: {

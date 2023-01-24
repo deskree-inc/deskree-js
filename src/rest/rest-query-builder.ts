@@ -29,36 +29,36 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @param params 
    * @returns 
    */
-  getById(id: string) {
-    return this.client.get(`${this.table}/${id}`)
+  getByUID(uid: string) {
+    return this.client.get(`${this.table}/${uid}`)
   }
 
   /**
-   * Perform an insert query
+   * Perform an create query
    * @param body 
    * @returns 
    */
-  insert(body: object) {
+  create(body: object) {
     return this.client.post(this.table, body)
   }
 
   /**
    * Perform an update query
-   * @param id 
+   * @param uid 
    * @param params 
    * @returns 
    */
-  update(id: string, params: object) {
-    return this.client.patch(`${this.table}/${id}`, params)
+  update(uid: string, params: object) {
+    return this.client.patch(`${this.table}/${uid}`, params)
   }
 
   /**
    * Perform a delete query
-   * @param id 
+   * @param uid 
    * @returns 
    */
-  delete(id: string) {
-    return this.client.delete(`${this.table}/${id}`)
+  delete(uid: string) {
+    return this.client.delete(`${this.table}/${uid}`)
   }
 
 }

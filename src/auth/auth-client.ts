@@ -20,7 +20,7 @@ export class AuthClient implements AuthClientDataType {
    * @param password
    * @returns 
    */
-  async signUpWithEmailAndPassword(email: string, password: string) {
+  async signUpEmail(email: string, password: string) {
     try {
       const { data } = await this.client.post('/signup', { email, password })
       if (this.rest) this.rest.auth(data.data.idToken)
@@ -36,7 +36,7 @@ export class AuthClient implements AuthClientDataType {
    * @param password 
    * @returns 
    */
-  async signInWithEmailAndPassword(email: string, password: string) {
+  async signInEmail(email: string, password: string) {
     try {
       const { data } = await this.client.post('/sign-in/email', { email, password })
       if (this.rest) this.rest.auth(data.data.idToken)
@@ -65,7 +65,7 @@ export class AuthClient implements AuthClientDataType {
    * @param code 
    * @returns 
    */
-  signInWithOAuth(sessionId: string, providerId: string, callBackUri: string, token: string, code: string) {
+  signInOAuth(sessionId: string, providerId: string, callBackUri: string, token: string, code: string) {
     return this.client.post('/sign-in/idp', { sessionId, providerId, callBackUri, token, code })
   }
 
@@ -146,7 +146,7 @@ export class AuthClient implements AuthClientDataType {
    * @param refresh_token 
    * @returns 
    */
-  exchangeRefreshTokenForIdToken(refresh_token: string) {
+  refreshToken(refresh_token: string) {
     return this.client.post('/token/refresh', { refresh_token })
   }
 

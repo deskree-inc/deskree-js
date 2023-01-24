@@ -1,4 +1,5 @@
 export type GetParamsDataType = {
+  includes?: string[]
   page?: number
   limit?: number
   where?: WhereDataType[] | string
@@ -14,7 +15,8 @@ export type WhereDataType = {
 
 export type RestQueryBuilderDataType = {
   get(params?: GetParamsDataType): any
-  insert(body: object): any
-  update(id: string, params: object): any
-  delete(id: string): any
+  getByUID(uid: string): any
+  create(body: object): any
+  update(uid: string, params: object): any
+  delete(uid: string): any
 }
