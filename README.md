@@ -1,9 +1,6 @@
 # Overview
 
-{% content-ref url="database-module/" %}
-[database-module](database-module/)
-{% endcontent-ref %}
+## List of Modules
 
-{% content-ref url="auth-module/" %}
-[auth-module](auth-module/)
-{% endcontent-ref %}
+* [database-module](database-module/ "mention")
+* [auth-module](auth-module/ "mention")

@@ -22,11 +22,9 @@ Get data from the database table
 
 #### Get all
 
-{% code overflow="wrap" %}
 ```javascript
 const products = await client.table('products').get()
 ```
-{% endcode %}
 
 #### Get all with filters
 

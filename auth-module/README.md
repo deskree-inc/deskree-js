@@ -8,3 +8,6 @@ AUTH Module handles all requests associated with users' accounts data and is bas
 
 * [signupemail.md](signupemail.md "mention")
 * [signupemail.md](signupemail.md "mention")
+* [refreshtoken.md](refreshtoken.md "mention")
+* [createurlforoauthsignin.md](createurlforoauthsignin.md "mention")
+* [signinoauth.md](signinoauth.md "mention")

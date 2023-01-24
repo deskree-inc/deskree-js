@@ -18,21 +18,17 @@ Get data from the database table by UID
 
 #### Get by UID
 
-{% code overflow="wrap" %}
 ```javascript
 const product = await client.table('products').getByUID("inom3bu91webuywd1ub9bu9dw1")
 ```
-{% endcode %}
 
 #### Get by UID with includes
 
-{% code overflow="wrap" %}
 ```javascript
 const product = await client.table('products').getByUID("inom3bu91webuywd1ub9bu9dw1", {
     includes: ["category"]
 })
 ```
-{% endcode %}
 
 ## Response
 
@@ -56,7 +52,6 @@ const product = await client.table('products').getByUID("inom3bu91webuywd1ub9bu9
 
 This is an example response to the [Get by UID with includes](getbyuid.md#get-by-uid-with-includes) request example above.
 
-{% code overflow="wrap" %}
 ```json
 {
     "data": {
@@ -77,4 +72,3 @@ This is an example response to the [Get by UID with includes](getbyuid.md#get-by
     }
 }
 ```
-{% endcode %}
