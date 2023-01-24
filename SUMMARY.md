@@ -10,3 +10,6 @@
     * [create()](database-module/from/create.md)
     * [update()](database-module/from/update.md)
     * [delete()](database-module/from/delete.md)
+* [AUTH Module](auth-module/README.md)
+  * [signInEmail()](auth-module/signinemail.md)
+  * [signUpEmail()](auth-module/signupemail.md)
