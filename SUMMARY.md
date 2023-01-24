@@ -31,6 +31,6 @@
   * [patch()](integrations-module/patch.md)
   * [put()](integrations-module/put.md)
   * [delete()](integrations-module/delete.md)
-* [Documentation](https://docs.deskree.com/api-docs)
+* [Documentation](https://docs.deskree.com/documentation/)
 * [REST API](https://docs.deskree.com/rest-api)
 * [GRAPHQL API](https://docs.deskree.com/graphql-api)
