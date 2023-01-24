@@ -1,6 +1,10 @@
 # Overview
 
+## Documentation
+
 This is the official documentation of [deskree-js](https://www.npmjs.com/package/@deskree/deskree-js) -  Javascript SDK of the [Deskree](https://www.deskree.com/) platform.
+
+For a better visual experience visit our [documentation page.](https://docs.deskree.com/javascript-sdk)
 
 ## Installation
 
@@ -34,6 +38,12 @@ const options = {
 
 const client = createClient(options)
 ```
+
+Read more about [createclient-method.md](createclient-method.md "mention")
+
+## Authorization
+
+To learn about authorization flow, visit [authorization.md](authorization.md "mention")
 
 ## List of Modules
 

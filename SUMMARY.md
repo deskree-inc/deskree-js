@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Overview](README.md)
-* [Authorization](authorization.md)
 * [createClient() Method](createclient-method.md)
+* [Authorization](authorization.md)
 * [Database Module](database-module/README.md)
   * [from()](database-module/from/README.md)
     * [get()](database-module/from/get.md)
@@ -31,3 +31,6 @@
   * [patch()](integrations-module/patch.md)
   * [put()](integrations-module/put.md)
   * [delete()](integrations-module/delete.md)
+* [Documentation](https://docs.deskree.com/api-docs)
+* [REST API](https://docs.deskree.com/rest-api)
+* [GRAPHQL API](https://docs.deskree.com/graphql-api)

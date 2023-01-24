@@ -12,7 +12,7 @@ Instantiates `deskree-js` SDK.
 
 #### Options Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>projectId</td><td>true</td><td>Object</td><td>Name of Deskree table to instantiate connection with</td></tr><tr><td>axios</td><td>true</td><td><a href="https://www.npmjs.com/package/axios">axios</a> instance</td><td>Instance of <code>axios</code> package</td></tr><tr><td>adminToken</td><td>false</td><td>string</td><td>Deskree Admin Token from project Settings -> Access Token<br><br>Read more</td></tr><tr><td>userToken</td><td>false</td><td>string</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>projectId</td><td>true</td><td>Object</td><td>Name of Deskree table to instantiate connection with</td></tr><tr><td>axios</td><td>true</td><td><a href="https://www.npmjs.com/package/axios">axios</a> instance</td><td>Instance of <code>axios</code> package</td></tr><tr><td>adminToken</td><td>false</td><td>string</td><td>Deskree Admin Token from project Settings -> Access Token<br><br><a href="https://docs.deskree.com/documentation/fundamentals/other/admin-token">Read more</a></td></tr><tr><td>userToken</td><td>false</td><td>string</td><td>Refresh token obtained from sign-up or sign-in methods<br><code></code><br><code></code>Examples: <br><a href="auth-module/signinemail.md">signInEmail()</a><br><a href="auth-module/signupemail.md">signUpEmail()</a><br><a href="auth-module/signinoauth.md">signInOAuth()</a></td></tr></tbody></table>
 
 ### Example
 
@@ -26,11 +26,6 @@ const options = {
   adminToken: "YOUR_DESKREE_ADMIN_TOKEN",
   userToken: "USER_IDTOKEN"
 }
-
-/* Optional options
-* adminToken: this is the access token that you can get from Settings/Access Token
-* userToken: this is the token created with the user sign in workflow
-*/
 
 const client = createClient(options)
 ```

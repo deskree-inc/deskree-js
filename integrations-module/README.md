@@ -28,5 +28,5 @@ const stripe = await client.integration('stripe')
 
 ## Helpful Resources
 
-* How to add an integration?
-* Deskree Integrations
+* [How to add an integration?](https://docs.deskree.com/documentation/get-started/how-to-add-an-integration)
+* [Deskree Integrations](https://docs.deskree.com/documentation/fundamentals/integrations)
