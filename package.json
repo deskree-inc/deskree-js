@@ -19,9 +19,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@deskree-inc"
   },
-  "engines": {
-    "node": "16"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deskree-inc/deskree-js.git"
