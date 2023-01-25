@@ -11,7 +11,7 @@ export type AuthResponseErrorInterface = {
   }
 }
 
-export type SignUpWithEmailAndPasswordInterface = {
+export type SignUpEmailInterface = {
   data: {
     uid: string
     email: string

@@ -1,9 +1,22 @@
 export type GetParamsDataType = {
+  includes?: string[]
   page?: number
   limit?: number
   where?: WhereDataType[] | string
   'sorted[how]'?: 'asc' | 'desc'
   'sorted[param]'?: string
+}
+
+export type GetByUIDParamsDataType = {
+  includes?: string[]
+}
+
+export type CreateParamsDataType = {
+  skipFileExceptions?: boolean
+}
+
+export type UpdateParamsDataType = {
+  skipFileExceptions?: boolean
 }
 
 export type WhereDataType = {
@@ -14,7 +27,8 @@ export type WhereDataType = {
 
 export type RestQueryBuilderDataType = {
   get(params?: GetParamsDataType): any
-  insert(body: object): any
-  update(id: string, params: object): any
-  delete(id: string): any
+  getByUID(uid: string, includes: GetByUIDParamsDataType): any
+  create(body: object, params: CreateParamsDataType): any
+  update(uid: string, body: object, params: UpdateParamsDataType): any
+  delete(uid: string): any
 }

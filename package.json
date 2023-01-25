@@ -1,7 +1,7 @@
 {
   "name": "@deskree-inc/deskree-js",
   "version": "0.0.0",
-  "description": "Deskree's JavaScript SDK",
+  "description": "Official Deskree JavaScript SDK",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
@@ -19,9 +19,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@deskree-inc"
   },
-  "engines": {
-    "node": "16"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/deskree-inc/deskree-js.git"
@@ -35,9 +32,10 @@
   "author": "Deskree Technologies",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/deskree-inc/deskree-js/issues"
+    "url": "https://github.com/deskree-inc/deskree-js/issues",
+    "email": "hello@deskree.com"
   },
-  "homepage": "https://github.com/deskree-inc/deskree-js#readme",
+  "homepage": "https://docs.deskree.com/javascript-sdk",
   "devDependencies": {
     "@types/node": "^18.11.10",
     "@typescript-eslint/eslint-plugin": "^5.45.0",

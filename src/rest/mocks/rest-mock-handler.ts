@@ -7,8 +7,17 @@ export class RestMockHandler implements HttpHandlerInterface {
     constructor(model: any) {
         this.model = model
     }
+    put(path: string, options?: object | undefined) {
+        if (this.model.response !== undefined) throw this.model
+        return { data: this.model }
+    }
 
     get(path: string, options?: object | undefined) {
+        if (this.model.response !== undefined) throw this.model
+        return { data: this.model }
+    }
+
+    getByUID(path: string, options?: object | undefined) {
         if (this.model.response !== undefined) throw this.model
         return { data: this.model }
     }

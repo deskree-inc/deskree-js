@@ -1,5 +1,5 @@
 import { HttpHandlerInterface } from '../http-handler'
-import { GetParamsDataType, RestQueryBuilderDataType } from './types'
+import { CreateParamsDataType, GetByUIDParamsDataType, GetParamsDataType, RestQueryBuilderDataType, UpdateParamsDataType } from './types'
 
 export class RestQueryBuilder implements RestQueryBuilderDataType {
 
@@ -25,31 +25,40 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
   }
 
   /**
-   * Perform an insert query
+   * Perform a select query
+   * @param params 
+   * @returns 
+   */
+  getByUID(uid: string, params?: GetByUIDParamsDataType) {
+    return this.client.get(`${this.table}/${uid}`, { params })
+  }
+
+  /**
+   * Perform an create query
    * @param body 
    * @returns 
    */
-  insert(body: object) {
-    return this.client.post(this.table, body)
+  create(body: object, params?: CreateParamsDataType) {
+    return this.client.post(this.table, body, { params })
   }
 
   /**
    * Perform an update query
-   * @param id 
+   * @param uid 
    * @param params 
    * @returns 
    */
-  update(id: string, params: object) {
-    return this.client.patch(`${this.table}/${id}`, params)
+  update(uid: string, body: object, params?: UpdateParamsDataType) {
+    return this.client.patch(`${this.table}/${uid}`, body, { params })
   }
 
   /**
    * Perform a delete query
-   * @param id 
+   * @param uid 
    * @returns 
    */
-  delete(id: string) {
-    return this.client.delete(`${this.table}/${id}`)
+  delete(uid: string) {
+    return this.client.delete(`${this.table}/${uid}`)
   }
 
 }
