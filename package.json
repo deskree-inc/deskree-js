@@ -6,7 +6,8 @@
   "types": "build/index.d.ts",
   "files": [
     "build/**/*.js",
-    "build/**/*.json"
+    "build/**/*.json",
+    "build/**/*.ts"
   ],
   "scripts": {
     "test:cicd": "export MOCK_ACTIVE=true && vitest run",
