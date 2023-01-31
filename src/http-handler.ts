@@ -34,16 +34,16 @@ export class HttpHandler implements HttpHandlerInterface {
         return this.client?.get(path, options)
     }
 
-    post(path: string, options?: object | undefined): any {
-        return this.client?.post(path, options)
+    post(path: string, options?: object | undefined, params?: object): any {
+        return this.client?.post(path, options, params)
     }
 
     put(path: string, options?: object | undefined): any {
         return this.client?.put(path, options)
     }
 
-    patch(path: string, options?: object | undefined): any {
-        return this.client?.patch(path, options)
+    patch(path: string, options?: object | undefined, params?: object): any {
+        return this.client?.patch(path, options, params)
     }
 
     delete(path: string, options?: object | undefined): any {
