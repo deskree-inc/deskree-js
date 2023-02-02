@@ -19,7 +19,10 @@ export class ConfigClient {
       const schemas: SchemaDataType[] = data.data
       const schema = schemas.find(schema => schema.attributes.name === table.toLowerCase())
 
-      if (schema) {
+      if (schema &&
+        Object.prototype.hasOwnProperty.call(schema, "attributes") &&
+        Object.prototype.hasOwnProperty.call(schema.attributes, "model")) {
+
         const model = schema.attributes.model
 
         switch (format) {
@@ -27,8 +30,7 @@ export class ConfigClient {
             return { data: model }
 
           case 'formatted':
-            const formattedModel = formatModelTypes(model)
-            return { data: formattedModel }
+            return { data: formatModelTypes(model) }
         }
 
       } else {
