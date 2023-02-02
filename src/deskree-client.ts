@@ -20,19 +20,46 @@ export class DeskreeClient {
   }
 
   database(name: string = "collections", options?: ClientOptions): RestClient {
-    this.rest = new RestClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, database: name.toLowerCase(), headers: options?.headers })
+    this.rest = new RestClient({
+      options: options || this.opts,
+      url: this.url,
+      http: this.opts.http,
+      axios: this.opts.axios,
+      database: name.toLowerCase(),
+      headers: options?.headers
+    })
+
     return this.rest
   }
 
   auth(): AuthClient {
-    return new AuthClient({ options: this.opts, url: this.url, rest: this.rest, http: this.opts.http, axios: this.opts.axios })
+    return new AuthClient({
+      options: this.opts,
+      url: this.url,
+      rest: this.rest,
+      http: this.opts.http,
+      axios: this.opts.axios
+    })
   }
 
   integration(name: string, options?: ClientOptions): IntegrationClient {
-    return new IntegrationClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, integration: name.toLowerCase(), headers: options?.headers })
+    return new IntegrationClient({
+      options: options || this.opts,
+      url: this.url,
+      http: this.opts.http,
+      axios: this.opts.axios,
+      integration: name.toLowerCase(),
+      headers: options?.headers
+    })
   }
 
-  config(options?: ClientOptions): ConfigClient {
-    return new ConfigClient({ options: options || this.opts, url: this.url, http: this.opts.http, axios: this.opts.axios, headers: options?.headers })
+  config(): ConfigClient {
+    return new ConfigClient({
+      options: this.opts,
+      url: this.url,
+      http: this.opts.http,
+      axios: this.opts.axios,
+      headers: this.opts.headers
+    })
   }
 }
