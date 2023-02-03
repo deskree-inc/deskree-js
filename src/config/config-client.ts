@@ -56,12 +56,11 @@ export class ConfigClient {
    * Generate types for all of the database schemas and saves a new file to the root directory of your project
    * @returns new file with types of the project's database
    */
-  async generateDataTypes(): Promise<void> {
+  async generateDataTypes(path: string = './deskree-types.ts'): Promise<void> {
     try {
       const { data } = await this.client.get('/collections')
       const schemas: SchemaDataType[] = data.data
 
-      const path = './deskree-types.ts'
       if (fs.existsSync(path)) fs.unlink(path, e => { if (e) console.log(e) })
 
       for (const schema of schemas) {
