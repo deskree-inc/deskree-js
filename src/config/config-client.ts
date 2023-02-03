@@ -1,6 +1,7 @@
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
 import { RequestOptions } from '../request-options'
-import { formatModelTypes } from './utils/format-data-types'
+import { formatModelDataTypes, formatModelTypes } from './utils/format-data-types'
+import fs from 'fs';
 
 export class ConfigClient {
 
@@ -12,6 +13,12 @@ export class ConfigClient {
     this.client.createInstance(this.path, { 'deskree-admin': opts.options.adminToken })
   }
 
+  /**
+   * Get schema for the selected database
+   * @param table table name
+   * @param format default or formatted
+   * @returns schema types of the selected database
+   */
   async getSchema(table: string, format: 'default' | 'formatted' = 'default'): Promise<any> {
     try {
       const { data } = await this.client.get('/collections')
@@ -45,18 +52,33 @@ export class ConfigClient {
     }
   }
 
-  // TODO: Get data types and save it to a file
-  async getDataTypes() {
-    // try {
-    //   const { data } = await this.client.get('/collections')
-    //   return data
-    // } catch (e) {
-    //   throw e
-    // }
+  /**
+   * Generate types for all of the database schemas and saves a new file to the root directory of your project
+   * @returns new file with types of the project's database
+   */
+  async generateDataTypes(path: string = './deskree-types.ts'): Promise<void> {
+    try {
+      const { data } = await this.client.get('/collections')
+      const schemas: SchemaDataType[] = data.data
+
+      if (fs.existsSync(path)) fs.unlink(path, e => { if (e) console.log(e) })
+
+      for (const schema of schemas) {
+        const schemaName = schema.attributes.name
+        const formattedTypeName = schemaName.charAt(0).toUpperCase() + schemaName.slice(1) + 'DataType'
+
+        const model = schema.attributes.model
+        const formattedModel = formatModelDataTypes(model)
+        const finalModel = JSON.stringify(formattedModel, null, '\t').replace(/\"/g, '')
+
+        const content = `type ${formattedTypeName} = ${finalModel}\n\n`
+
+        fs.appendFile(path, content, e => { if (e) console.log(e) })
+      }
+    } catch (e) {
+      throw e
+    }
   }
-
-
-
 }
 
 type SchemaDataType = {
