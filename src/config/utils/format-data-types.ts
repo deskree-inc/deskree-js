@@ -11,16 +11,16 @@ export function formatModelTypes(model: any) {
     else if (pureType === 'array<string>') {
       model[key] = { type: 'string[]', isOptional: model[key].includes('?') ? true : false }
     }
-    else if (pureType === 'array<integer>' || 'array<float>') {
+    else if (pureType === 'array<integer>' || pureType === 'array<float>') {
       model[key] = { type: 'number[]', isOptional: model[key].includes('?') ? true : false }
     }
     else if (pureType === 'array<boolean>') {
       model[key] = { type: 'boolean[]', isOptional: model[key].includes('?') ? true : false }
     }
-    else if (pureType === 'string' || 'uid' || 'storage') {
+    else if (pureType === 'string' || pureType === 'uid' || pureType === 'storage') {
       model[key] = { type: 'string', isOptional: model[key].includes('?') ? true : false }
     }
-    else if (pureType === 'integer') {
+    else if (pureType === 'integer' || pureType === 'float') {
       model[key] = { type: 'number', isOptional: model[key].includes('?') ? true : false }
     }
     else if (pureType === 'boolean') {
@@ -62,15 +62,7 @@ export function formatModelDataTypes(model: any) {
         model[key] = 'string[]'
       }
     }
-    else if (pureType === 'string' || 'uid' || 'storage') {
-      if (model[key].includes('?')) {
-        model[`${key}?`] = 'string'
-        delete model[key]
-      } else {
-        model[key] = 'string'
-      }
-    }
-    else if (pureType === 'array<integer>' || 'array<float>') {
+    else if (pureType === 'array<integer>' || pureType === 'array<float>') {
       if (model[key].includes('?')) {
         model[`${key}?`] = 'number[]'
         delete model[key]
@@ -84,6 +76,14 @@ export function formatModelDataTypes(model: any) {
         delete model[key]
       } else {
         model[key] = 'boolean[]'
+      }
+    }
+    else if (pureType === 'string' || pureType === 'uid' || pureType === 'storage') {
+      if (model[key].includes('?')) {
+        model[`${key}?`] = 'string'
+        delete model[key]
+      } else {
+        model[key] = 'string'
       }
     }
     else if (pureType === 'integer') {

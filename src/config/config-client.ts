@@ -93,7 +93,7 @@ export class ConfigClient {
         // Get model and format it accordingly
         const model = schema.attributes.model
         const formattedModel = formatModelDataTypes(model)
-        const finalModel = JSON.stringify(formattedModel, null, '\t').replace(/\"/g, '')
+        const finalModel = JSON.stringify(formattedModel, null, '\t').replace(/\"|\,/g, '')
 
         // Export type for each schema as a content
         const content = `export type ${formattedTypeName} = ${finalModel}\n\n`
