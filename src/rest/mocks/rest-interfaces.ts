@@ -18,7 +18,7 @@ export type ProductMetaRestInterface = {
 export type ProductsMetaRestInterface = {
   total: number
   page: string
-  limit: string
+  limit: number
 }
 
 export type ProductRestInterface = {
