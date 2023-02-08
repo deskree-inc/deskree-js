@@ -26,7 +26,7 @@ export class AuthClient implements AuthClientDataType {
       if (this.rest) this.rest.auth(data.data.idToken)
       return data
     } catch (e) {
-      return e
+      throw e
     }
   }
 
@@ -42,7 +42,7 @@ export class AuthClient implements AuthClientDataType {
       if (this.rest) this.rest.auth(data.data.idToken)
       return data
     } catch (e) {
-      return e
+      throw e
     }
   }
 
@@ -53,7 +53,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   createUrlForOAuthSignIn(providerId: string, callBackUri: string) {
-    return this.client.post('/sign-in/auth-url', { providerId, callBackUri })
+    try {
+      return this.client.post('/sign-in/auth-url', { providerId, callBackUri })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -66,7 +70,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   signInOAuth(sessionId: string, providerId: string, callBackUri: string, token: string, code: string) {
-    return this.client.post('/sign-in/idp', { sessionId, providerId, callBackUri, token, code })
+    try {
+      return this.client.post('/sign-in/idp', { sessionId, providerId, callBackUri, token, code })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -75,7 +83,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   inviteUser(email: string) {
-    return this.client.post('/invite', { email })
+    try {
+      return this.client.post('/invite', { email })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -84,7 +96,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   resetPassword(email: string) {
-    return this.client.post('/password-reset', { email })
+    try {
+      return this.client.post('/password-reset', { email })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -93,8 +109,12 @@ export class AuthClient implements AuthClientDataType {
    * @param uid 
    * @returns 
    */
-  verifyEmail(oobCode: string, uid: string) {
-    return this.client.post('/verify/email', { oobCode, uid })
+  async verifyEmail(oobCode: string, uid: string) {
+    try {
+      return await this.client.post('/verify/email', { oobCode, uid })
+    } catch (e: any) {
+      throw e
+    }
   }
 
   /**
@@ -108,7 +128,7 @@ export class AuthClient implements AuthClientDataType {
       const { data } = this.client.post('/verify/password-reset', { oobCode, newPassword })
       return data
     } catch (e) {
-      return e
+      throw e
     }
   }
 
@@ -120,7 +140,12 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   verifyInvite(oobCode: string, newPassword: string, uid: string) {
-    return this.client.post('/verify/invite', { oobCode, newPassword, uid })
+    try {
+      const { data } = this.client.post('/verify/invite', { oobCode, newPassword, uid })
+      return data
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -129,7 +154,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   updateEmail(email: string) {
-    return this.client.post('/update-email', { email })
+    try {
+      return this.client.post('/update-email', { email })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -138,7 +167,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   fetchEmailProviders(email: string) {
-    return this.client.post('/email-providers', { email })
+    try {
+      return this.client.post('/email-providers', { email })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -147,7 +180,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   refreshToken(refresh_token: string) {
-    return this.client.post('/token/refresh', { refresh_token })
+    try {
+      return this.client.post('/token/refresh', { refresh_token })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -155,7 +192,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   deleteAccount() {
-    return this.client.delete('')
+    try {
+      return this.client.delete('')
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -163,7 +204,11 @@ export class AuthClient implements AuthClientDataType {
    * @returns 
    */
   getRoles() {
-    return this.client.get('/roles')
+    try {
+      return this.client.get('/roles')
+    } catch (e) {
+      throw e
+    }
   }
 
 }

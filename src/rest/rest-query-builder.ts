@@ -30,7 +30,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @returns 
    */
   getByUID(uid: string, params?: GetByUIDParamsDataType) {
-    return this.client.get(`${this.table}/${uid}`, { params })
+    try {
+      return this.client.get(`${this.table}/${uid}`, { params })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -39,7 +43,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @returns 
    */
   create(body: object, params?: CreateParamsDataType) {
-    return this.client.post(this.table, body, { params })
+    try {
+      return this.client.post(this.table, body, { params })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -49,7 +57,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @returns 
    */
   update(uid: string, body: object, params?: UpdateParamsDataType) {
-    return this.client.patch(`${this.table}/${uid}`, body, { params })
+    try {
+      return this.client.patch(`${this.table}/${uid}`, body, { params })
+    } catch (e) {
+      throw e
+    }
   }
 
   /**
@@ -58,7 +70,11 @@ export class RestQueryBuilder implements RestQueryBuilderDataType {
    * @returns 
    */
   delete(uid: string) {
-    return this.client.delete(`${this.table}/${uid}`)
+    try {
+      return this.client.delete(`${this.table}/${uid}`)
+    } catch (e) {
+      throw e
+    }
   }
 
 }

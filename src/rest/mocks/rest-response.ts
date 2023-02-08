@@ -20,12 +20,17 @@ export class RestResponse {
 
 	getWhere(): object {
 		return {
-			meta: { total: 1 }, data: [{
-				uid: 'BPJcWcDwV4wzNaQxI7es',
+			meta: {
+				total: 1,
+				includesCount: 0,
+				limit: 50,
+				page: 1,
+			}, data: [{
+				uid: '1d97lJCH6gCPRcrx9pMx',
 				attributes: {
 					author: '',
-					createdAt: '2022-12-06T15:33:38-03:00',
-					updatedAt: '2022-12-06T15:33:38-03:00',
+					createdAt: '2023-02-07T13:01:53-03:00',
+					updatedAt: '2023-02-07T13:01:53-03:00',
 					name: 'Desk',
 					price: 199.9
 				}
@@ -109,27 +114,29 @@ export class RestResponse {
 		return {
 			meta: {
 				total: 6,
-				limit: '2'
+				limit: 2,
+				includesCount: 0,
+				page: 1,
 			},
 			data: [
 				{
-					uid: 'BPJcWcDwV4wzNaQxI7es',
+					uid: '1d97lJCH6gCPRcrx9pMx',
 					attributes: {
 						author: '',
-						updatedAt: '2022-12-06T15:33:38-03:00',
+						updatedAt: '2023-02-07T13:01:53-03:00',
 						name: 'Desk',
 						price: 199.9,
-						createdAt: '2022-12-06T15:33:38-03:00'
+						createdAt: '2023-02-07T13:01:53-03:00'
 					}
 				},
 				{
-					uid: 'BwtNyX8bnFSelJVEMaX3',
+					uid: '6uhSG03fGsaBjYxsS0rf',
 					attributes: {
-						createdAt: '2022-12-06T15:36:05-03:00',
+						createdAt: '2023-01-31T08:59:05-03:00',
 						author: '',
-						updatedAt: '2022-12-06T15:36:05-03:00',
-						price: 1229.9,
-						name: 'Computer'
+						updatedAt: '2023-01-31T08:59:05-03:00',
+						price: 100.1,
+						name: 'product'
 					}
 				}
 			]
@@ -335,8 +342,18 @@ export class RestResponse {
 		}
 	}
 
-	deleteSuccess(): string {
-		return ''
+	deleteSuccess(uid: string): object {
+		return {
+			data: {
+				uid,
+				resource: 'products'
+			},
+			meta: {},
+			info: {
+				action: 'delete',
+				webhooksTriggered: 0
+			}
+		}
 	}
 
 	deleteFail(): object {

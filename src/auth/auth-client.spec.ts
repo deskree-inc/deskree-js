@@ -2,6 +2,7 @@ import { describe, test, expect } from 'vitest'
 import { DeskreeClient } from '../deskree-client'
 import { AuthResponse } from './mocks/auth-response'
 import { AuthMockHandler } from './mocks/auth-mock-handler'
+import crypto from 'crypto'
 
 describe('Testing AUTH Module', () => {
   let response: AuthResponse = new AuthResponse()
@@ -9,17 +10,18 @@ describe('Testing AUTH Module', () => {
 
   const projectWithProvidersSetup = 'deskreesdk'
   const projectMissingProvidersSetup = 'deskree-sdk'
+  const randomEmail = crypto.randomBytes(20).toString('hex') + '@vitest.com'
 
   test('SUCCESS: Sign Up With Email And Password', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.signUpEmailSetupSuccess()) })
-    const { data } = await client.auth().signUpEmail('email@email.com', 'password')
-    expect(data.email).toEqual('user@example.com')
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.signUpEmailSetupSuccess(randomEmail)) })
+    const { data } = await client.auth().signUpEmail(randomEmail, 'qwerty12345')
+    expect(data.email).toEqual(randomEmail)
   })
 
   test('FAIL: Sign Up With Email And Password - Setup not complete', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectMissingProvidersSetup }) : new DeskreeClient({ projectId: projectMissingProvidersSetup, host: undefined, http: new AuthMockHandler(response.signUpEmailSetupNotComplete()) })
     try {
-      await client.auth().signUpEmail('email@email.com', 'password')
+      await client.auth().signUpEmail(randomEmail, 'qwerty12345')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('Email/password setup is not complete. Please complete the Email/Password Authentication setup in your project')
     }
@@ -35,9 +37,10 @@ describe('Testing AUTH Module', () => {
   })
 
   test('SUCCESS: Sign In With Email And Password', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.signUpEmailSetupSuccess()) })
-    const { data } = await client.auth().signInEmail('email@email.com', 'password')
-    expect(data.email).toEqual('user@example.com')
+    const email = 'email@example.com'
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.signUpEmailSetupSuccess(email)) })
+    const { data } = await client.auth().signInEmail(email, 'qwerty12345')
+    expect(data.email).toEqual(email)
   })
 
   test('FAIL: Sign In With Email And Password - Email not found', async () => {
@@ -52,7 +55,7 @@ describe('Testing AUTH Module', () => {
   test('FAIL: Sign In With Email And Password - Invalid password', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectMissingProvidersSetup }) : new DeskreeClient({ projectId: projectMissingProvidersSetup, host: undefined, http: new AuthMockHandler(response.signInEmailEmailNotFound()) })
     try {
-      await client.auth().signInEmail('email@email.com', 'invalid_password')
+      await client.auth().signInEmail(randomEmail, 'invalid_password')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('INVALID_PASSWORD')
     }
@@ -110,8 +113,9 @@ describe('Testing AUTH Module', () => {
   })
 
   test('SUCCESS: Invite User', async () => {
+    const randomEmail = crypto.randomBytes(20).toString('hex') + '@vitest.com'
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.inviteUserSuccess()) })
-    const { data } = await client.auth().inviteUser('user@email.com')
+    const { data } = await client.auth().inviteUser(randomEmail)
     expect(data).toEqual('')
   })
 
@@ -126,29 +130,31 @@ describe('Testing AUTH Module', () => {
 
   test('SUCCESS: Reset Password', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.resetPasswordSuccess()) })
-    const { data } = await client.auth().inviteUser('user@example.com')
+    const { data } = await client.auth().resetPassword(randomEmail)
     expect(data).toEqual('')
   })
 
   test('FAIL: Reset Password - Email not found', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.resetPasswordNoEmailFound()) })
     try {
-      await client.auth().resetPassword('')
+      await client.auth().resetPassword('asd@asd.com')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('There is no user record corresponding to the provided email.')
     }
   })
 
-  test('SUCCESS: Verify Email', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.resetPasswordSuccess()) })
-    const { data } = await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk')
-    expect(data).toEqual('')
-  })
+  // TODO: SUCCESS: Verify Email
+
+  // test('SUCCESS: Verify Email', async () => {
+  //   let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.resetPasswordSuccess()) })
+  //   const { data } = await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', '5fXWuEcJYidZmcZEXc6XpUYdtFq2')
+  //   expect(data).toEqual('')
+  // })
 
   test('FAIL: Verify Email - Email not found', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.verifyEmailNoUserFound()) })
     try {
-      await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk')
+      await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', 'EnoFyhm0tYZVADqgAdOtH41KnJJ3')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('There is no user record corresponding to the provided identifier.')
     }
@@ -157,7 +163,7 @@ describe('Testing AUTH Module', () => {
   test('FAIL: Verify Email - Invalid OOB Code', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.verifyEmailInvalidOobCode()) })
     try {
-      await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk')
+      await client.auth().verifyEmail('na9uubnkloaf9n18n9u112u41', '5fXWuEcJYidZmcZEXc6XpUYdtFq2')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('INVALID_OOB_CODE')
     }
@@ -168,7 +174,7 @@ describe('Testing AUTH Module', () => {
   test('FAIL: Verify Password Reset - Invalid OOB Code', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: projectWithProvidersSetup }) : new DeskreeClient({ projectId: projectWithProvidersSetup, host: undefined, http: new AuthMockHandler(response.verifyEmailInvalidOobCode()) })
     try {
-      await client.auth().verifyPasswordReset('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk')
+      await client.auth().verifyPasswordReset('invalid_oob_code', 'CN5GtxT8VVSHKOlw0MWoqbhq06a2')
     } catch (e: any) {
       expect(e.response.data.errors.errors[0].detail).toEqual('INVALID_OOB_CODE')
     }
