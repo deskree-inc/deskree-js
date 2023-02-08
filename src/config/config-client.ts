@@ -1,7 +1,8 @@
+import fs from 'fs';
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
 import { RequestOptions } from '../request-options'
 import { formatModelDataTypes, formatModelTypes } from './utils/format-data-types'
-import fs from 'fs';
+import { GenerateDataTypesDataType, GetSchemaOptions, SchemaDataType } from './types'
 
 export class ConfigClient {
 
@@ -22,7 +23,6 @@ export class ConfigClient {
   async getSchema(options: GetSchemaOptions): Promise<any> {
 
     const { table, format, database } = options
-
     const useFormat = format ? format : 'default'
 
     try {
@@ -31,7 +31,7 @@ export class ConfigClient {
 
       // Get schema selected by the user
       const schemas: SchemaDataType[] = data.data
-      const schema = schemas.find(schema => schema.attributes.name === table.toLowerCase())
+      const schema = schemas.find(schema => schema.attributes.name === table)
 
       // Return default or formatted JSON schema to the user
       if (schema &&
@@ -105,35 +105,4 @@ export class ConfigClient {
       throw e
     }
   }
-}
-
-type GenerateDataTypesDataType = {
-  path?: string
-  fileName?: string
-  database?: string
-}
-
-type GetSchemaOptions = {
-  table: string
-  format?: "default" | "formatted"
-  database?: "default"
-}
-
-type SchemaDataType = {
-  uid: string,
-  attributes: SchemaAttributesDataType
-}
-
-type SchemaAttributesDataType = {
-  order: number,
-  name: string,
-  config: SchemaAttributesConfigDataType,
-  subCollections: any[],
-  model: any
-}
-
-type SchemaAttributesConfigDataType = {
-  updatedAt: boolean,
-  timezone: string,
-  createdAt: boolean
 }

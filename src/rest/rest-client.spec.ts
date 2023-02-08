@@ -11,8 +11,8 @@ describe('Testing REST Module', () => {
 
   test('GET: GENERAL SUCCESS - Check for table with no entries', async () => {
     let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.getEmpty()) })
-    const { data } = await client.database().from('users').get()
-    expect(data).toEqual({ meta: { total: expect.any(Number) }, data: [] })
+    const { data } = await client.database().from('emptyTables').get()
+    expect(data.data).toEqual([])
   })
 
   test('GET: GENERAL FAIL - Check for inexistent table', async () => {
@@ -36,7 +36,7 @@ describe('Testing REST Module', () => {
 
     expectTypeOf(data.meta.total).toBeNumber()
     expectTypeOf(data.meta.page).toBeString()
-    expectTypeOf(data.meta.limit).toBeString()
+    expectTypeOf(data.meta.limit).toBeNumber()
 
     data.data.map((product: ProductDataRestInterface) => {
       expectTypeOf(product).toHaveProperty('uid')
@@ -62,27 +62,29 @@ describe('Testing REST Module', () => {
     expect(data).toEqual({
       meta: {
         total: expect.any(Number),
-        limit: '2'
+        includesCount: expect.any(Number),
+        page: expect.any(Number),
+        limit: 2
       },
       data: [
         {
-          uid: 'BPJcWcDwV4wzNaQxI7es',
+          uid: '1d97lJCH6gCPRcrx9pMx',
           attributes: {
             author: '',
-            updatedAt: '2022-12-06T15:33:38-03:00',
+            updatedAt: '2023-02-07T13:01:53-03:00',
             name: 'Desk',
             price: 199.9,
-            createdAt: '2022-12-06T15:33:38-03:00'
+            createdAt: '2023-02-07T13:01:53-03:00'
           }
         },
         {
-          uid: 'BwtNyX8bnFSelJVEMaX3',
+          uid: '6uhSG03fGsaBjYxsS0rf',
           attributes: {
-            createdAt: '2022-12-06T15:36:05-03:00',
+            createdAt: '2023-01-31T08:59:05-03:00',
             author: '',
-            updatedAt: '2022-12-06T15:36:05-03:00',
-            price: 1229.9,
-            name: 'Computer'
+            updatedAt: '2023-01-31T08:59:05-03:00',
+            price: 100.1,
+            name: 'product'
           }
         }
       ]
@@ -102,17 +104,20 @@ describe('Testing REST Module', () => {
     })
     expect(data).toEqual({
       meta: {
-        total: expect.any(Number)
+        total: expect.any(Number),
+        includesCount: expect.any(Number),
+        limit: expect.any(Number),
+        page: expect.any(Number),
       },
       data: [
         {
-          uid: 'BPJcWcDwV4wzNaQxI7es',
+          uid: '1d97lJCH6gCPRcrx9pMx',
           attributes: {
-            updatedAt: '2022-12-06T15:33:38-03:00',
+            updatedAt: '2023-02-07T13:01:53-03:00',
             name: 'Desk',
             price: 199.9,
             author: '',
-            createdAt: '2022-12-06T15:33:38-03:00'
+            createdAt: '2023-02-07T13:01:53-03:00'
           }
         }
       ]
@@ -239,9 +244,9 @@ describe('Testing REST Module', () => {
   })
 
   test('DELETE: SUCCESS - Delete a product', async () => {
-    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.deleteSuccess()) })
+    let client: DeskreeClient = mock_active === false ? new DeskreeClient({ projectId: 'deskree-sdk' }) : new DeskreeClient({ projectId: 'deskree-sdk', host: undefined, http: new RestMockHandler(response.deleteSuccess(addedProduct.uid)) })
     const { data } = await client.database().from('products').delete(addedProduct.uid)
-    expect(data).toEqual('')
+    expect(data.data.uid).toEqual(addedProduct.uid)
   })
 
   test('DELETE: FAIL - Try to delete a product that does not exist', async () => {
