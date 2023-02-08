@@ -1,11 +1,19 @@
 export type GetDefaultSchemaInterface = {
-  data: {
-    email: string,
-    roles: string,
-    updatedAt: string,
-    createdAt: string,
-    uid: string
-  }
+  data: GetDefaultSchemaDataInterface[]
+  attributes: GetDefaultSchemaAttributesInterface
+}
+
+export type GetDefaultSchemaDataInterface = {
+  email: string,
+  roles: string,
+  updatedAt: string,
+  createdAt: string,
+  uid: string
+  name: string
+}
+
+export type GetDefaultSchemaAttributesInterface = {
+  name: string
 }
 
 export type GetSchemaWithoutAdminToken = {
@@ -17,7 +25,6 @@ export type GetSchemaWithoutAdminToken = {
     }
   ]
 }
-
 
 export type GetFormattedSchemaInterface = {
   data: {

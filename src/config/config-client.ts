@@ -31,7 +31,7 @@ export class ConfigClient {
 
       // Get schema selected by the user
       const schemas: SchemaDataType[] = data.data
-      const schema = schemas.find(schema => schema.attributes.name === table.toLowerCase())
+      const schema = schemas.find(schema => schema.attributes.name === table)
 
       // Return default or formatted JSON schema to the user
       if (schema &&
