@@ -21,7 +21,7 @@ export class RestClient {
   }
 
   auth(token: string) {
-    this.client.createInstance(this.path, { 'Authentication': 'Bearer ' + token })
+    this.client.createInstance(this.path, { 'Authorization': 'Bearer ' + token })
   }
 
   authAdmin(token: string) {
