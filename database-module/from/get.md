@@ -45,6 +45,10 @@ const products = await client.table('products').get({
 
 ## Response
 
+{% hint style="info" %}
+If you receive `412` error, it means that an index needs to be created for your query. Deskree handles this process automatically. For more information, visit the [Indexes](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/integrations) page.
+{% endhint %}
+
 ### Parameters
 
 | Field | Data Type        | Description                                                |
