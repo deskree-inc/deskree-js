@@ -19,7 +19,7 @@ If you delete an object the associated file will automatically be deleted in sto
 #### Delete
 
 ```javascript
-const product = await client.table('products').delete("tTvKpi6E7N68Xv8RJOug")
+const product = await client.database().from('products').delete("tTvKpi6E7N68Xv8RJOug")
 ```
 
 ## Response

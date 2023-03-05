@@ -23,13 +23,13 @@ Get data from the database table
 #### Get all
 
 ```javascript
-const products = await client.table('products').get()
+const products = await client.database().from('products').get()
 ```
 
 #### Get all with filters
 
 ```javascript
-const products = await client.table('products').get({
+const products = await client.database().from('products').get({
     page: 1,
     limit: 10,
     where: {
