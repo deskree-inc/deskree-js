@@ -21,7 +21,7 @@ export type UpdateParamsDataType = {
 
 export type WhereDataType = {
   attribute: string
-  operator: string
+  operator: '=' | '==' | '!=' | '<' | '>' | '<=' | ">=" | "in" | 'not in' | 'array-contains' | 'array-contains-any'
   value: string
 }
 
