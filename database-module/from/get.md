@@ -16,6 +16,10 @@ Get data from the database table
 
 #### Where Object Parameters
 
+{% hint style="warning" %}
+Note that `UID` cannot be used in the `attribute` field. If you want to get an item by UID, you can use the [Get by UID method](getbyuid.md) instead.
+{% endhint %}
+
 <table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>attribute</td><td>false</td><td>string</td><td>Column name that you would like to query by</td></tr><tr><td>operator</td><td>false</td><td><code>&#x3C;</code> | <code>></code> | <code>==</code> | <code>!=</code> | <code>&#x3C;=</code> | <code>>=</code> | <code>array-contains</code> | <code>array-contains-any</code> | <code>in</code> | <code>not-in</code></td><td>An operator to perform the query</td></tr><tr><td>value</td><td>false</td><td>any</td><td>Value of the query</td></tr></tbody></table>
 
 ### Examples
