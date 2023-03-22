@@ -19,13 +19,13 @@ Get data from the database table by UID
 #### Get by UID
 
 ```javascript
-const product = await client.table('products').getByUID("inom3bu91webuywd1ub9bu9dw1")
+const product = await client.database().from('products').getByUID("inom3bu91webuywd1ub9bu9dw1")
 ```
 
 #### Get by UID with includes
 
 ```javascript
-const product = await client.table('products').getByUID("inom3bu91webuywd1ub9bu9dw1", {
+const product = await client.database().from('products').getByUID("inom3bu91webuywd1ub9bu9dw1", {
     includes: ["category"]
 })
 ```

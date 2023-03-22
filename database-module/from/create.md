@@ -19,7 +19,7 @@ Create an object in the database
 #### Create
 
 ```javascript
-const product = await client.table('products').create({
+const product = await client.database().from('products').create({
     "name": "Hat",
     "price": 12,
     "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1036&q=80"
@@ -30,7 +30,7 @@ const product = await client.table('products').create({
 
 {% code overflow="wrap" %}
 ```javascript
-const product = await client.table('products').create(
+const product = await client.database().from('products').create(
     {
         "name": "Hat",
         "price": 12,
