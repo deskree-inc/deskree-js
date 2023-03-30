@@ -14,7 +14,7 @@ Endpoint to reset the user password. The user will receive an email prompting hi
 
 {% code overflow="wrap" %}
 ```javascript
-const resetPassword = await client.auth().resetPassword('example@example.com')
+await client.auth().resetPassword('example@example.com')
 ```
 {% endcode %}
 

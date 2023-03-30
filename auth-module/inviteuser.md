@@ -14,7 +14,7 @@ Send an invite to a user via email. The system will first create a user in a dis
 
 {% code overflow="wrap" %}
 ```javascript
-const inviteUser = await client.auth().inviteUser('example@example.com')
+await client.auth().inviteUser('example@example.com')
 ```
 {% endcode %}
 
