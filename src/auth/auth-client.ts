@@ -104,6 +104,20 @@ export class AuthClient implements AuthClientDataType {
   }
 
   /**
+   * Update password
+   * @param oldPassword old password
+   * @param newPassword new password
+   * @returns 
+   */
+  updatePassword(oldPassword: string, newPassword: string) {
+    try {
+      return this.client.post('/update-password', { oldPassword, newPassword })
+    } catch (e) {
+      throw e
+    }
+  }
+
+  /**
    * Verify email
    * @param oobCode 
    * @param uid 
