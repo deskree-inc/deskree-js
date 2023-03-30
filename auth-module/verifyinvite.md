@@ -12,11 +12,8 @@ Endpoint to verify invitation based on `oobCode` and `uid` provided in the email
 
 ### Example
 
-{% code overflow="wrap" %}
-```javascript
-const verifyInvite = await client.auth().verifyInvite('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk', 'qwerty12345')
-```
-{% endcode %}
+<pre class="language-javascript" data-overflow="wrap"><code class="lang-javascript"><strong>await client.auth().verifyInvite('na9uubnkloaf9n18n9u112u41', '0193j401nd18en18dj1nm29dn8nuk', 'qwerty12345')
+</strong></code></pre>
 
 ## Response
 

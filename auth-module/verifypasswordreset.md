@@ -14,7 +14,7 @@ Endpoint to verify password reset request based on `oobCode` provided in the ema
 
 {% code overflow="wrap" %}
 ```javascript
-const verifyInvite = await client.auth().verifyPasswordReset('na9uubnkloaf9n18n9u112u41', 'qwerty12345')
+await client.auth().verifyPasswordReset('na9uubnkloaf9n18n9u112u41', 'qwerty12345')
 ```
 {% endcode %}
 

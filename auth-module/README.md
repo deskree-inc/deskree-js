@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-AUTH Module handles all requests associated with users' accounts data and is based on [AUTH REST API](https://app.gitbook.com/s/XSWt74WFLvclje14OaLt/auth-apis).
+AUTH Module handles all requests associated with users' accounts data and is based on [AUTH REST API](http://localhost:5000/s/XSWt74WFLvclje14OaLt/auth-apis).
 
 ## **auth() Methods**
 
@@ -19,3 +19,4 @@ AUTH Module handles all requests associated with users' accounts data and is bas
 * [fetchemailproviders.md](fetchemailproviders.md "mention")
 * [deleteaccount.md](deleteaccount.md "mention")
 * [getroles.md](getroles.md "mention")
+* [updatepassword.md](updatepassword.md "mention")

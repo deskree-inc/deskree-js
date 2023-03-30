@@ -19,7 +19,7 @@ Make sure you send `userToken` is passed to `createClient`()  method as this req
 
 {% code overflow="wrap" %}
 ```javascript
-const fetchEmailProviders = await client.auth().deleteAccount()
+await client.auth().deleteAccount()
 ```
 {% endcode %}
 
