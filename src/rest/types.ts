@@ -21,8 +21,8 @@ export type UpdateParamsDataType = {
 
 export type WhereDataType = {
   attribute: string
-  operator: string
-  value: string
+  operator: '=' | '==' | '!=' | '<' | '>' | '<=' | ">=" | "in" | 'not in' | 'array-contains' | 'array-contains-any'
+  value: any
 }
 
 export type RestQueryBuilderDataType = {
