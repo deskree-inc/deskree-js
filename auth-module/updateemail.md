@@ -19,7 +19,7 @@ Make sure you send `userToken` is passed to `createClient`()  method as this req
 
 {% code overflow="wrap" %}
 ```javascript
-const verifyInvite = await client.auth().updateEmail('example@example.com')
+await client.auth().updateEmail('example@example.com')
 ```
 {% endcode %}
 
