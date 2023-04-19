@@ -36,11 +36,13 @@ const products = await client.database().from('products').get()
 const products = await client.database().from('products').get({
     page: 1,
     limit: 10,
-    where: {
-        attribute: "price",
-        operator: ">",
-        value: 10
-    },
+    where: [
+        {
+            attribute: "price",
+            operator: ">",
+            value: 10
+        }
+    ],
     "sorted[how]": "asc",
     "sorted[param]": "price",
     "includes": ["category"]
@@ -50,7 +52,7 @@ const products = await client.database().from('products').get({
 ## Response
 
 {% hint style="info" %}
-If you receive `412` error, it means that an index needs to be created for your query. Deskree handles this process automatically. For more information, visit the [Indexes](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/integrations) page.
+If you receive `412` error, it means that an index needs to be created for your query. Deskree handles this process automatically. For more information, visit the [Indexes](http://localhost:5000/s/yI7bLryeVaoczdkvkVAD/fundamentals/integrations) page.
 {% endhint %}
 
 ### Parameters
