@@ -1,5 +1,5 @@
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
-import { RequestOptions } from '../request-options'
+import { RequestOptions } from '../interfaces/request-options'
 
 export class IntegrationClient {
 
@@ -13,35 +13,35 @@ export class IntegrationClient {
     this.client.createInstance(this.path, opts.headers)
   }
 
-  private fixPath(path: string) : string {
-    if(path !== undefined && path.trim() !== "") {
-        if(path.substring(0, 1) !== "/") path = "/" + path
+  private fixPath(path: string): string {
+    if (path !== undefined && path.trim() !== "") {
+      if (path.substring(0, 1) !== "/") path = "/" + path
     }
 
     return path
   }
 
-  async get(path: string, options?: any) : Promise<any> {
+  async get(path: string, options?: any): Promise<any> {
     path = this.fixPath(path)
     return await this.client.get(path, options)
   }
 
-  async post(path: string, options?: any) : Promise<any> {
+  async post(path: string, options?: any): Promise<any> {
     path = this.fixPath(path)
     return await this.client.post(path, options)
   }
 
-  async put(path: string, options?: any) : Promise<any> {
+  async put(path: string, options?: any): Promise<any> {
     path = this.fixPath(path)
     return await this.client.put(path, options)
   }
 
-  async patch(path: string, options?: any) : Promise<any> {
+  async patch(path: string, options?: any): Promise<any> {
     path = this.fixPath(path)
     return await this.client.patch(path, options)
   }
 
-  async delete(path: string, options?: any) : Promise<any> {
+  async delete(path: string, options?: any): Promise<any> {
     path = this.fixPath(path)
     return await this.client.delete(path, options)
   }

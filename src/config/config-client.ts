@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
-import { RequestOptions } from '../request-options'
+import { RequestOptions } from '../interfaces/request-options'
 import { formatModelDataTypes, formatModelTypes } from './utils/format-data-types'
 import { GenerateDataTypesDataType, GetSchemaOptions, SchemaDataType } from './types'
 

@@ -1,7 +1,7 @@
 import { HttpHandler, HttpHandlerInterface } from '../http-handler'
 import { AuthClientDataType } from './types'
 import { RestClient } from '../rest/rest-client'
-import { RequestOptions } from '../request-options'
+import { RequestOptions } from '../interfaces/request-options'
 
 export class AuthClient implements AuthClientDataType {
 
@@ -191,7 +191,7 @@ export class AuthClient implements AuthClientDataType {
   /**
    * Exchange refresh token for id token
    * @param refresh_token 
-   * @returns 
+   * @returns
    */
   refreshToken(refresh_token: string) {
     try {
