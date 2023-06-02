@@ -12,7 +12,7 @@ export class DeskreeClient {
 
   constructor(opts: ClientOptions) {
     this.opts = opts
-    let domain = 'api.deskree.com'
+    let domain = 'api-dev.deskree.com'
     if (!opts.projectId) throw new Error('projectId is required.')
     if (opts.host !== undefined) domain = opts.host
 
