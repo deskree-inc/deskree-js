@@ -1,4 +1,4 @@
-import { ClientOptions } from './client-options'
+import { ClientOptions } from './interfaces/client-options'
 import { DeskreeClient } from './deskree-client'
 
 function createClient(options: ClientOptions): DeskreeClient {

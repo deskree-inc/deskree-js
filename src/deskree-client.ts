@@ -1,5 +1,5 @@
 import { AuthClient } from './auth/auth-client'
-import { ClientOptions } from './client-options'
+import { ClientOptions } from './interfaces/client-options'
 import { ConfigClient } from './config/config-client'
 import { IntegrationClient } from './integration/interation-client'
 import { RestClient } from './rest/rest-client'
@@ -12,7 +12,7 @@ export class DeskreeClient {
 
   constructor(opts: ClientOptions) {
     this.opts = opts
-    let domain = 'api.deskree.com'
+    let domain = 'api-dev.deskree.com'
     if (!opts.projectId) throw new Error('projectId is required.')
     if (opts.host !== undefined) domain = opts.host
 
