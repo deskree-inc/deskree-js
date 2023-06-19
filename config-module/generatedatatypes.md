@@ -22,7 +22,7 @@ You can use this feature to make your development easier by generating database 
     }
 
     const client = createClient(options);
-    client.config().generateDataTypes("../interfaces")
+    client.config().generateDataTypes({path: "./src/interfaces", name: "deskree.types.ts"})
     ```
 
 
@@ -65,7 +65,7 @@ You can use this feature to make your development easier by generating database 
 
 #### Options Object Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>database</td><td>false</td><td><code>default</code></td><td>Currently accepts only "default" value, but with multiple databases per project feature coming soon, it will be accepting the name of the database to extract the configs from.<br><br><strong>Default</strong>: "default"</td></tr><tr><td>path</td><td>false</td><td><code>string</code></td><td><p>Relative path where typescript interfaces should be saved.</p><p></p><p><strong>Default:</strong> will save the file in the same directory where the method is executed.</p></td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>database</td><td>false</td><td><code>default</code></td><td>Currently accepts only "default" value, but with multiple databases per project feature coming soon, it will be accepting the name of the database to extract the configs from.<br><br><strong>Default</strong>: "default"</td></tr><tr><td>path</td><td>false</td><td><code>string</code></td><td><p>Relative path where typescript interfaces should be saved. Should always end with <code>/</code> <br><br>Example: <code>./src/interfaces/</code></p><p></p><p><strong>Default:</strong> will save the file in the same directory where the method is executed.</p></td></tr><tr><td>fileName</td><td>false</td><td>`string`</td><td>File name of the interfaces. <br><br>Default: <code>deskree-types.interface.ts</code></td></tr></tbody></table>
 
 ### Example
 

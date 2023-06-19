@@ -12,9 +12,13 @@ Get data from the database table
 
 #### Options Object Parameters
 
-<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>page</td><td>false</td><td>number</td><td>Page number to navigate to if the response is paginated</td></tr><tr><td>limit</td><td>false</td><td>number</td><td>Number of results per page if the response is paginated<br><br><strong>Default</strong>: 50</td></tr><tr><td>where</td><td>false</td><td>object</td><td><a href="get.md#where-object-parameters">Where Object</a> describing query parameters</td></tr><tr><td>sorted[how]</td><td>false</td><td><code>asc</code> | <code>desc</code></td><td>How to sort response results: ascending vs descending<br><br>Must be used with <code>sorted[param]</code> parameter</td></tr><tr><td>sorted[param]</td><td>false</td><td>string</td><td><p>How to sort response results: what parameter to sort by </p><p><br>Must be used with <code>sorted[param]</code> parameter</p></td></tr><tr><td>includes</td><td>false</td><td>Array of string</td><td>An array of columns with <code>one-to-one</code> or <code>one-to-many</code> references that you would like to include in your response.<br><br>For <code>one-to-one</code> reference the value will be returned as an object containing the includes in place of the reference value.<br><br>For <code>one-to-many</code> reference the value will be returned as an array of objects containing the includes in place of the reference value.</td></tr></tbody></table>
+<table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>page</td><td>false</td><td>number</td><td>Page number to navigate to if the response is paginated</td></tr><tr><td>limit</td><td>false</td><td>number</td><td>Number of results per page if the response is paginated<br><br><strong>Default</strong>: 50</td></tr><tr><td>where</td><td>false</td><td>Array of <a href="get.md#where-object-parameters">Where Objects</a></td><td><a href="get.md#where-object-parameters">Where Object</a> describing query parameters</td></tr><tr><td>sorted[how]</td><td>false</td><td><code>asc</code> | <code>desc</code></td><td>How to sort response results: ascending vs descending<br><br>Must be used with <code>sorted[param]</code> parameter</td></tr><tr><td>sorted[param]</td><td>false</td><td>string</td><td><p>How to sort response results: what parameter to sort by </p><p><br>Must be used with <code>sorted[param]</code> parameter</p></td></tr><tr><td>includes</td><td>false</td><td>Array of string</td><td>An array of columns with <code>one-to-one</code> or <code>one-to-many</code> references that you would like to include in your response.<br><br>For <code>one-to-one</code> reference the value will be returned as an object containing the includes in place of the reference value.<br><br>For <code>one-to-many</code> reference the value will be returned as an array of objects containing the includes in place of the reference value.</td></tr></tbody></table>
 
 #### Where Object Parameters
+
+{% hint style="warning" %}
+Note that `UID` cannot be used in the `attribute` field. If you want to get an item by UID, you can use the [Get by UID method](getbyuid.md) instead.
+{% endhint %}
 
 <table><thead><tr><th>Field</th><th data-type="checkbox">Required</th><th>Data Type</th><th>Description</th></tr></thead><tbody><tr><td>attribute</td><td>false</td><td>string</td><td>Column name that you would like to query by</td></tr><tr><td>operator</td><td>false</td><td><code>&#x3C;</code> | <code>></code> | <code>==</code> | <code>!=</code> | <code>&#x3C;=</code> | <code>>=</code> | <code>array-contains</code> | <code>array-contains-any</code> | <code>in</code> | <code>not-in</code></td><td>An operator to perform the query</td></tr><tr><td>value</td><td>false</td><td>any</td><td>Value of the query</td></tr></tbody></table>
 
@@ -23,13 +27,13 @@ Get data from the database table
 #### Get all
 
 ```javascript
-const products = await client.table('products').get()
+const products = await client.database().from('products').get()
 ```
 
 #### Get all with filters
 
 ```javascript
-const products = await client.table('products').get({
+const products = await client.database().from('products').get({
     page: 1,
     limit: 10,
     where: {
@@ -44,6 +48,10 @@ const products = await client.table('products').get({
 ```
 
 ## Response
+
+{% hint style="info" %}
+If you receive `412` error, it means that an index needs to be created for your query. Deskree handles this process automatically. For more information, visit the [Indexes](https://app.gitbook.com/s/yI7bLryeVaoczdkvkVAD/fundamentals/integrations) page.
+{% endhint %}
 
 ### Parameters
 
