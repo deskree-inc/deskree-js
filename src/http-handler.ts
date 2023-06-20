@@ -17,16 +17,16 @@ export interface HttpHandlerInterface {
 export class HttpHandler implements HttpHandlerInterface {
     public url: string
     public client?: AxiosInstance | any
-    public axios_manager = axios;
+    public axios_manager = axios
 
     constructor(url: string, axios_handler?: any) {
         this.url = url
 
         if (axios_handler !== undefined) {
-            this.axios_manager = axios_handler;
+            this.axios_manager = axios_handler
         }
         else {
-            this.axios_manager = axios;
+            this.axios_manager = axios
         }
     }
 
@@ -69,7 +69,26 @@ export class HttpHandler implements HttpHandlerInterface {
         }
 
         this.client = this.axios_manager.create(options)
+
+        this.client.interceptors.response.use(null, async (error: any) => {
+            if (error.response.status === 403) {
+
+                try {
+                    const { data } = await axios.post(`${this.url}/auth/accounts/token/refresh`, { refresh_token: options.headers.refreshToken })
+                    error.config.headers.Authorization = `Bearer ${data.data.id_token}`
+                } catch (e: any) {
+                    throw {
+                        code: e.code,
+                        message: 'Permission denied. Attempted to refresh the access token using the provided refresh token. Either you do not have permission to access the resource or the provided access/refresh token is expired/invalid.',
+                        responseStatus: e.response?.status,
+                    }
+                }
+
+                return new Promise((resolve) => resolve(axios(error.config)))
+            }
+
+            return Promise.reject(error)
+        })
     }
 
 }
-

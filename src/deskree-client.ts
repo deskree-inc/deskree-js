@@ -1,5 +1,5 @@
 import { AuthClient } from './auth/auth-client'
-import { ClientOptions } from './client-options'
+import { ClientOptions } from './interfaces/client-options'
 import { ConfigClient } from './config/config-client'
 import { IntegrationClient } from './integration/interation-client'
 import { RestClient } from './rest/rest-client'

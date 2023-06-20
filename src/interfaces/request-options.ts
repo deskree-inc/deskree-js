@@ -1,6 +1,6 @@
-import { ClientOptions } from "./client-options";
-import { HttpHandlerInterface } from "./http-handler";
-import { RestClient } from "./rest/rest-client";
+import { ClientOptions } from "../interfaces/client-options";
+import { HttpHandlerInterface } from "../http-handler";
+import { RestClient } from "../rest/rest-client";
 
 export interface RequestOptions {
     options: ClientOptions;
